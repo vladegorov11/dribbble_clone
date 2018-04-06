@@ -1,0 +1,5 @@
+<section class="section shots-wrap">
+<h5 class="title is-5 has-text-centered"><%= "#{pluralize(@shots.count, 'Shot')} match your search: #{@tag.name}"%></h5>
+  <%= render partial: 'shared/shots', locals: {colomn_size: "is-3"}%>
+</section>
+

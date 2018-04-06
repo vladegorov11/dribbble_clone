@@ -1,0 +1,10 @@
+<section class="section shots-wrap" id="pagination-wrapper">
+	<div class="columns  is-multiline " >
+		
+  		<%= render partial: 'shot', collection: @shots , locals: {colomn_size: "is-3"}%>
+  		
+  	</div>
+</section>
+<%= will_paginate @shots %>
+
+<%#= render partial: 'shared/shots', locals: {colomn_size: "is-3"}%>

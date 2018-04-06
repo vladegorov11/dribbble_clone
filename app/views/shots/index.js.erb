@@ -1,0 +1,11 @@
+$('#pagination-wrapper').append("<%=j render(partial: 'shots/shot', collection: @shots, locals: {colomn_size: 'is-3'}) %>");
+<% if @shots.next_page %>
+    $('.pagination').replaceWith("<%= j will_paginate @shots %>");
+<% else%>
+    $('.pagination')remove();
+<% end %>
+
+
+//
+//render(:partial => 'shots/shot', obj: @comment, :locals => { :colomn_size => 'is-3' })
+

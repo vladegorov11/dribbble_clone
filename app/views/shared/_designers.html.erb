@@ -1,0 +1,87 @@
+<% @designers.each do |designer| %>
+    <div class="columns border-bottom">
+      <div class="column is-3">
+        <div class="columns">
+          <div class="column is-4">
+            <%= gravatar_image_tag(designer.user.email.gsub('spam', 'mdeering'), alt: designer.user.name, class: "image user-icon",gravatar: { size: 80 }); %>
+            <%=render partial: "shared/social_links", locals: {item_size: 1.2, designer: designer} %>
+          </div>
+          <div class="column is-8">
+            <%= link_to designer_path(designer) do %>
+            <div class="user-name"><%= designer.user.name %></div>
+            <%end%>
+            <span class="icon is-pulled-right follow"><i class="fa fa-plus "></i></span>
+            <div class="designer-city">Tel Aviv</div>
+            <div class="designer-description"><%= truncate(designer.description, length: 60) %></div>
+            <hr>
+            <div class="tags">
+              <%=raw designer.skills.map(&:name).map{|skill| link_to "<span class='tag  is-size-7'>#{skill}</span>".html_safe, skill_path(skill)}.join(' ')%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-9">
+        <div class="columns">
+          <% designer.shots.limit(4).each do |shot|%>
+            <div class="column is-3">
+              <div class="shot-wrapper">
+                <%= link_to shot, class: "shot" do %>
+                  <div class="holder">
+                    <img src="<%= shot.user_shot_url %>" class="image-shot">
+                    <div class="block">
+                      <div class="shot-data">
+                        <h3 class="shot-title"><%= shot.title %></h3>
+                        <div class="shot-description"><%= truncate(shot.description, length: 60) %></div>
+                        <div class="shot-time">
+                            <%= time_ago_in_words(shot.created_at) %> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <%end%>
+                <nav class="level shot-analytics">
+                  <div class="level-left"></div>
+                  <div class="level-right">
+                    <div class="level-item views data">
+                      <%= link_to shot do %>
+                        <span class="icon"><i class="fa fa-eye"></i></span>
+                        <%= shot.impressionist_count %>
+                      <% end %>
+                    </div>
+                    <div class="level-item comments data">
+                      <%= link_to shot do %>
+                        <span class="icon"><i class="fa fa-comment"></i></span>
+                         <%= shot.comments.count %>
+                      <% end %>
+                    </div>
+                    <div class="level-item likes">
+                      <% if user_signed_in? %>
+                        
+                        <% if current_user.liked? shot %>
+                          <%= link_to unlike_shot_path(shot), method: :put, class: "unlike_shot" do %>
+                            <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
+                            <span class="vote_count"><%= shot.get_likes.size %></span>
+                          <% end %>
+                        <% else %>
+                          <%= link_to like_shot_path(shot), method: :put, class: "like_shot" do %>
+                            <span class="icon"><i class="fa fa-heart"></i></span>
+                            <span class="vote_count"><%= shot.get_likes.size %></span>
+                          <% end %>
+                        <% end %>
+                      <% else %>
+                          <%= link_to like_shot_path(shot), method: :put, class: "like_shot" do %>
+                            <span class="icon"><i class="fa fa-heart"></i></span>
+                            <span class="vote_count"><%= shot.get_likes.size %></span>
+                          <% end %>
+                      <% end %>
+
+                    </div>
+                  </div>
+                 </nav>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  <%end%>

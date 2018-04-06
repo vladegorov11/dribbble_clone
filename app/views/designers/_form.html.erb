@@ -1,0 +1,47 @@
+<%= simple_form_for @designer, html: { multipart: true }  do |f| %>
+  <%= f.error_notification %>
+  <div class="columns is-centered">
+    <div class="column is-half">
+    <div class="field">
+      <div class="control">
+        <%= f.input :name, label: "Name", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :description, input_html: { class: "textarea"}, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :all_skills, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :twitter_link, label: "Twitter link", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :facebook_link, label: "Facebook link", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :instagram_link, label: "Instagram link", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <%= f.button :submit, class:"button is-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

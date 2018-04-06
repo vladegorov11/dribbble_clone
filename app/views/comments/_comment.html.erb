@@ -1,0 +1,45 @@
+<% @shot.comments.each do |comment| %>
+  <div class="box">
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-48x48 user-thumb">
+          <%= gravatar_image_tag(comment.user.email.gsub('spam', 'mdeering'), alt: comment.user.name, gravatar: { size: 48 }) %>
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><%= comment.user.name %></strong>
+            <div><%= comment.response %></div>
+          </p>
+        </div>
+      </div>
+      <% if (user_signed_in? && (current_user.id == comment.user_id)) %>
+         <%= link_to 'Delete', [comment.shot, comment],
+                    method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </article>
+    <div class="is-pulled-right is-p">
+      <% if user_signed_in? %>
+        <% if current_user.liked? comment %>
+          <%= link_to unlike_shot_comment_path(comment), method: :put, class: "unlike_shot" do %>
+            <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
+            <span class="vote_count"><%= comment.get_likes.size %></span>
+          <% end %>
+        <% else %>
+          <%= link_to like_shot_comment_path(comment), method: :put, class: "like_shot" do %>
+            <span class="icon"><i class="fa fa-heart"></i></span>
+            <span class="vote_count"><%= comment.get_likes.size %></span>
+          <% end %>
+        <% end %>
+      <% else %>
+          <%= link_to like_shot_comment_path(comment), method: :put, class: "like_shot" do %>
+            <span class="icon"><i class="fa fa-heart"></i></span>
+            <span class="vote_count"><%= comment.get_likes.size %></span>
+          <% end %>
+      <% end %>
+    </div>  
+  </div>
+<%end%>
+
+
