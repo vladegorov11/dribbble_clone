@@ -16,11 +16,11 @@ class SearchFilter
 	def date_time_filter
 		case @params[:date]
 			when 'month'
-				@shots = @shots.where(created_at: 1.month.ago..DateTime.now)
+				@shots = @shots.month
 			when 'year'
-				@shots = @shots.where(created_at: 1.year.ago..DateTime.now)
+				@shots = @shots.year
 			else 
-				@shots = @shots.where(created_at: 1.week.ago..DateTime.now)
+				@shots = @shots.week
 		end
 	end
 end

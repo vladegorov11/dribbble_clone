@@ -1,0 +1,8 @@
+<div class="tag-cloud-container">
+	<h4 class="title is-5 has-text-centered">Popular tags</h4>
+	<%Tag.shot_count.first(30).each do |tag|%>
+		<%= link_to tag_path(tag.name) do %>
+			<span class='tag  ' > <%= tag.name.upcase %> </span>
+		<%end%>
+	<%end %>
+</div>

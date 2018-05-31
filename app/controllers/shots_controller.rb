@@ -1,24 +1,33 @@
 class ShotsController < ApplicationController
   before_action :set_shot, only: [:show, :edit, :update, :destroy, :like, :unlike]
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
   impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
-
   def index
-    @shots = SearchFilter.new(params).scope.current_page(params[:page])
+    begin
+      @shots = Shot.filter(params.slice(:sort, :date, :list).permit!).current_page(params[:page]) 
+      authorize @shots
+      @empty_record = false
+    rescue Exception => e
+      @empty_record = true
+    end
   end
 
   def show
+    authorize @shot
   end
 
   def new
     @shot = current_user.designer.shots.build
+    authorize @shot
   end
 
   def edit
+    authorize @shot
   end
 
   def create
     @shot = current_user.designer.shots.build(shot_params)
+    authorize @shot
     respond_to do |format|
       if @shot.save
         format.html { redirect_to @shot, notice: 'Shot was successfully created.' }
@@ -31,6 +40,7 @@ class ShotsController < ApplicationController
   end
 
   def update
+    authorize @shot
     respond_to do |format|
       if @shot.update(shot_params)
         format.html { redirect_to @shot, notice: 'Shot was successfully updated.' }
@@ -43,6 +53,7 @@ class ShotsController < ApplicationController
   end
 
   def destroy
+    authorize @shot
     @shot.destroy
     respond_to do |format|
       format.html { redirect_to shots_url, notice: 'Shot was successfully destroyed.' }

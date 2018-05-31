@@ -1,0 +1,15 @@
+
+<%- more_from_designer(@shot.designer, 4).each do |shot| %>
+	<div class="column is-6 ">
+		<div class="shot-wrapper">
+		<%= link_to shot, class: "shot" do %>
+			<div class="">
+				<img src="<%= shot.user_shot_url %>" class="blur-image">
+			</div>
+		<%- end %>
+		</div>
+	</div>
+<%- end %>
+
+
+     

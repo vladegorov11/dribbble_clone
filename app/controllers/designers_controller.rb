@@ -1,13 +1,16 @@
 class DesignersController < ApplicationController
+  
   before_action :set_designer, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :follow, :unfollow]
 
   def index
     @designers = Designer.includes(:shots)
+    authorize @designers
   end
 
   def show
-    @shots = @designer.shots
+    authorize @designer
+    @shots = @designer.shots.current_page(params[:page])
   end
 
   def new
@@ -15,6 +18,7 @@ class DesignersController < ApplicationController
   end
 
   def edit
+    authorize @designer
   end
 
   def create
@@ -31,6 +35,7 @@ class DesignersController < ApplicationController
   end
 
   def update
+    authorize @designer
     respond_to do |format|
       if @designer.update(designer_params)
         format.html { redirect_to @designer, notice: 'Designer was successfully updated.' }
@@ -43,6 +48,7 @@ class DesignersController < ApplicationController
   end
 
   def destroy
+    authorize @designer
     @designer.destroy
     respond_to do |format|
       format.html { redirect_to designers_url, notice: 'Designer was successfully destroyed.' }
@@ -51,11 +57,13 @@ class DesignersController < ApplicationController
   end
   
   def follow
+    authorize @designer
     @designer.follow(current_user)
     redirect_back(fallback_location: root_path)
   end
 
   def unfollow
+    authorize @designer
     @designer.unfollow(current_user)
     redirect_back(fallback_location: root_path)
   end
@@ -66,6 +74,7 @@ class DesignersController < ApplicationController
     end
 
     def designer_params
-      params.require(:designer).permit(:name, :description, :all_skills)
+      params.require(:designer).permit(:name, :description, :all_skills, :city, :phone,
+       :instagram_link, :facebook_link, :twitter_link)
     end
 end

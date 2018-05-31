@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405103445) do
+ActiveRecord::Schema.define(version: 20180419081555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20180405103445) do
     t.integer "user_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "designers", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -42,6 +49,9 @@ ActiveRecord::Schema.define(version: 20180405103445) do
     t.string "instagram_link"
     t.string "facebook_link"
     t.string "twitter_link"
+    t.string "city"
+    t.string "phone"
+    t.integer "shots_count", default: 0
   end
 
   create_table "follows", force: :cascade do |t|
@@ -77,6 +87,17 @@ ActiveRecord::Schema.define(version: 20180405103445) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "conversation_id"
+    t.bigint "user_id"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "shots", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -89,6 +110,7 @@ ActiveRecord::Schema.define(version: 20180405103445) do
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
+    t.integer "comments_count", default: 0
     t.index ["cached_votes_down"], name: "index_shots_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_shots_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_shots_on_cached_votes_total"
@@ -130,6 +152,7 @@ ActiveRecord::Schema.define(version: 20180405103445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

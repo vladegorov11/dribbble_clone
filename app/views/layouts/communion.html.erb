@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DribbbleClone</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'shared/headerr'%> 
+    <%= render 'shared/hero'%>
+    <%= render 'shared/sort'%>
+
+    <div class="profile-container  has-text-centered is-size-6 has-text-weight-semibold info-bar">
+  <%= link_to root_path do %>
+    <span ">Shots: <%= @designer.shots.count%></span>
+  <%end%>
+  <%= link_to root_path do %>
+    <span >Followers: <%= @designer.follows.count%></span>
+  <%end%>
+  <%= link_to root_path do %>
+    <span >likes:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
+  <%end%>
+  <%= link_to root_path do %>
+    <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
+  <%end%>
+  <%= link_to conversations_path do %>
+    <span >Messages: </span>
+  <%end%>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3" :class="{formstatic: scrollPosition < 100, formfixed: scrollPosition > 100}">
+        <div class="profile-container">
+          <%if user_signed_in? %>
+            <div class="has-text-right">
+              <% if policy(@designer).edit? %>
+                <%= link_to  edit_designer_path(@designer) do %>
+                  <span class="icon" style="font-size:1.5em;"><i class="fa fa-cog"></i></span>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="shot-full">
+            <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "rounded",gravatar: { size: 120 }); %>
+            </div>
+            <div class="shot-full">
+              <div class="user-name"><%= @designer.name %></div>
+              <div class="designer-city"><%= @designer.city %></div>
+            </div>
+          <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
+          <div>
+
+
+          <% if @designer.user.id != current_user.id %>
+            <div class="item">
+               <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button '%>
+            </div>
+          <% end %>
+
+             
+          <hr>
+          <h3>DESCRIPTION</h3>
+          <div class="designer-description"><%= truncate(@designer.description, length: 200) %></div>
+          </div>
+          <hr>
+          <h3>SKILLS</h3>
+          <div class="designer-description">
+            <div class="tags">
+              <%=raw @designer.skills.map(&:name).map{|skill| link_to "<span class='tag  is-size-7'>#{skill}</span>".html_safe, skill_path(skill)}.join(' ')%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-9">
+          <%= yield %>
+      </div>
+      
+    </div>
+  </div>
+</section>
+  </body>
+</html>

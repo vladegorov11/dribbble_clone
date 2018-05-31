@@ -41,6 +41,8 @@ gem 'acts_as_votable', '~> 0.11.1'
 gem 'russian', '~> 0.6.0'
 gem 'will_paginate' , '~> 3.1.0'
 gem 'pundit'
+gem 'evil_icons'
+gem 'file_validators'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -50,6 +52,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do

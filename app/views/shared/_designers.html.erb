@@ -3,7 +3,7 @@
       <div class="column is-3">
         <div class="columns">
           <div class="column is-4">
-            <%= gravatar_image_tag(designer.user.email.gsub('spam', 'mdeering'), alt: designer.user.name, class: "image user-icon",gravatar: { size: 80 }); %>
+            <%= gravatar_image_tag(designer.user.email.gsub('spam', 'mdeering'), alt: designer.user.name, class: "image rounded",gravatar: { size: 80 }); %>
             <%=render partial: "shared/social_links", locals: {item_size: 1.2, designer: designer} %>
           </div>
           <div class="column is-8">

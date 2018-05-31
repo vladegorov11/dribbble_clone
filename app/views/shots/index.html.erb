@@ -1,10 +1,12 @@
-<section class="section shots-wrap" id="pagination-wrapper">
-	<div class="columns  is-multiline " >
-		
-  		<%= render partial: 'shot', collection: @shots , locals: {colomn_size: "is-3"}%>
-  		
-  	</div>
+<section class="section shots-wrap" id="pagination-wrapper" >
+  	<% unless @empty_record%>
+  		<div class="columns  is-multiline " id="shots">
+  			<%= render  @shots%>
+  		</div>
+  		<%= will_paginate  @shots %>
+  	<% else %>
+  		<%= render  'shared/empty_record'%>
+  	<% end %>
 </section>
-<%= will_paginate @shots %>
 
-<%#= render partial: 'shared/shots', locals: {colomn_size: "is-3"}%>
+

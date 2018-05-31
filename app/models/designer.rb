@@ -9,7 +9,9 @@ class Designer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { in: 6..30 }
   validates :description, presence: true, length: { in: 50..250 }
-
+  validates :city, presence: true, length: { in: 2..50 }
+  validates :phone, format: { with: /(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?/}, allow_blank: true 
+  
   def all_skills
     self.skills.map(&:name).join(', ')
   end
@@ -29,4 +31,10 @@ class Designer < ApplicationRecord
   def follow? user 
     self.users.include?(user) ? true : false 
   end
+
+  def self.per_page
+    10
+  end
 end
+
+

@@ -1,4 +1,4 @@
-<% @shot.comments.each do |comment| %>
+<% @shot.comments.reject{|e| e.new_record?}.each do |comment| %>
   <div class="box">
     <article class="media">
       <figure class="media-left">
@@ -19,26 +19,6 @@
                     method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
       <% end %>
     </article>
-    <div class="is-pulled-right is-p">
-      <% if user_signed_in? %>
-        <% if current_user.liked? comment %>
-          <%= link_to unlike_shot_comment_path(comment), method: :put, class: "unlike_shot" do %>
-            <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
-            <span class="vote_count"><%= comment.get_likes.size %></span>
-          <% end %>
-        <% else %>
-          <%= link_to like_shot_comment_path(comment), method: :put, class: "like_shot" do %>
-            <span class="icon"><i class="fa fa-heart"></i></span>
-            <span class="vote_count"><%= comment.get_likes.size %></span>
-          <% end %>
-        <% end %>
-      <% else %>
-          <%= link_to like_shot_comment_path(comment), method: :put, class: "like_shot" do %>
-            <span class="icon"><i class="fa fa-heart"></i></span>
-            <span class="vote_count"><%= comment.get_likes.size %></span>
-          <% end %>
-      <% end %>
-    </div>  
   </div>
 <%end%>
 

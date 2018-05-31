@@ -21,4 +21,14 @@ Rails.application.routes.draw do
   resources :skills, only: [:show]
   resources :tags, only: [:show]
   devise_for :users, controllers: {registrations: 'registrations'}
+
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    #get 'all_user', to: 'dashboard#all_user'
+    #get 'create_content_for_user/:id', to: 'dashboard#create_content_for_user', as: 'create_content_for_user'
+  end
+
+  resources :conversations do
+    resources :messages
+  end
 end

@@ -1,5 +1,5 @@
 
-    <div class="column <%= colomn_size %>  ">
+    <div class="column <%#= colomn_size %> is-3 ">
       <div class="shot-wrapper">
         <%= link_to shot, class: "shot" do %>
           <div class="holder">
@@ -59,7 +59,7 @@
         <div class="user-thumb">
           <%= gravatar_image_tag(shot.designer.user.email.gsub('spam', 'mdeering'), alt: shot.designer.user.name, gravatar: { size: 20 }); %>
         </div>
-        <div class="user-name"><%= shot.designer.user.name %></div>
+        <div class="user-name"><%= link_to shot.designer.name, designer_path(shot.designer)%></div>
       </div>
     </div>
     <hr>

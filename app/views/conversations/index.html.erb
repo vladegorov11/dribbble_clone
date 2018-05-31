@@ -1,0 +1,42 @@
+
+  <div class="columns ">
+    <div class="column is-8 is-offset-2">
+      <div class="dialogs-container">
+        <% @conversations.each do |conversation| %>
+          <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+          <% end %>
+          <%= link_to conversation_messages_path(conversation) do %>
+            <div class="dialog-container">
+                
+          <div class="columns">
+            <div class="column is-2 ">
+            <%= gravatar_image_tag(recipient.email.gsub('spam', 'mdeering'), class: "rounded ", gravatar: { size: 45 }); %> 
+            </div>
+            <div class="column is-10">
+              <p>
+                <%=recipient.name %>   <%= unread_message_count(conversation)%>
+              </p>
+              <hr>
+              <p class="last-message">
+                last message: <%= truncate(conversation.messages.last.body, length: 60) %>
+              </p>
+              <div class="is-pulled-right">
+                  <span class="has-text-weight-semibold is-size-7 ">sent at </span><span class=" has-text-grey-light is-size-7">
+                    <%= verbose_date(conversation.messages.last.created_at) %>
+                  </span>
+                </div>
+            </div>
+          </div>
+            </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+

@@ -11,6 +11,9 @@
   <%= link_to root_path do %>
     <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
   <%end%>
+  <%= link_to conversations_path do %>
+    <span >Messages: </span>
+  <%end%>
 </div>
 <section class="section">
   <div class="container">
@@ -19,20 +22,30 @@
         <div class="profile-container">
           <%if user_signed_in? %>
             <div class="has-text-right">
-              <%= link_to  edit_designer_path(@designer) do %>
-                <span class="icon" style="font-size:1.5em;"><i class="fa fa-cog"></i></span>
-              <% end if current_user.id == @designer.user_id%>
+              <% if policy(@designer).edit? %>
+                <%= link_to  edit_designer_path(@designer) do %>
+                  <span class="icon" style="font-size:1.5em;"><i class="fa fa-cog"></i></span>
+                <% end %>
+              <% end %>
             </div>
           <% end %>
           <div class="shot-full">
-            <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "",gravatar: { size: 120 }); %>
+            <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "rounded",gravatar: { size: 120 }); %>
             </div>
             <div class="shot-full">
-              <div class="user-name"><%= @designer.user.name %></div>
-              <div class="designer-city">Tel Aviv</div>
+              <div class="user-name"><%= @designer.name %></div>
+              <div class="designer-city"><%= @designer.city %></div>
             </div>
           <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
           <div>
+
+
+          <% if @designer.user.id != current_user.id %>
+            <div class="item">
+               <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button '%>
+            </div>
+          <% end %>
+
              
           <hr>
           <h3>DESCRIPTION</h3>
@@ -48,8 +61,12 @@
         </div>
       </div>
       <div class="column is-9">
-        <%= render partial: 'shared/shots', locals: {colomn_size: "is-4"}%>
+        <div class="columns  is-multiline " id="shots">
+          <%= render @shots%>
+        </div>
       </div>
+      
     </div>
+    <%= will_paginate  @shots %>
   </div>
 </section>

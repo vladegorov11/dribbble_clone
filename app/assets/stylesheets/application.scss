@@ -10,13 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require evil-icons
  *= require_tree .
  *= require_self
  */
 
 $pink: #ea4c89;
 $pink-invert: #fff;
-
+$danger: #ff3860;
 $primary: $pink;
 $primary-invert: $pink-invert;
 $link: $primary;
@@ -33,6 +34,98 @@ hr {
 }
 a {
   text-decoration: none;
+}
+
+m-none { margin: 0; }
+.p-none { padding: 0; }
+.m-t-none { margin-top: 0; }
+.p-t-none { padding-top: 0; }
+.m-r-none { margin-right: 0; }
+.p-r-none { padding-right: 0; }
+.m-b-none { margin-bottom: 0; }
+.p-b-none { padding-bottom: 0; }
+.m-l-none { margin-left: 0; }
+.p-l-none { padding-left: 0; }
+.m-xxs { margin: 0.125rem; }
+.p-xxs { padding: 0.125rem; }
+.m-t-xxs { margin-top: 0.125rem; }
+.p-t-xxs { padding-top: 0.125rem; }
+.m-r-xxs { margin-right: 0.125rem; }
+.p-r-xxs { padding-right: 0.125rem; }
+.m-b-xxs { margin-bottom: 0.125rem; }
+.p-b-xxs { padding-bottom: 0.125rem; }
+.m-l-xxs { margin-left: 0.125rem; }
+.p-l-xxs { padding-left: 0.125rem; }
+.m-xs { margin: 0.25rem; }
+.p-xs { padding: 0.25rem; }
+.m-t-xs { margin-top: 0.25rem; }
+.p-t-xs { padding-top: 0.25rem; }
+.m-r-xs { margin-right: 0.25rem; }
+.p-r-xs { padding-right: 0.25rem; }
+.m-b-xs { margin-bottom: 0.25rem; }
+.p-b-xs { padding-bottom: 0.25rem; }
+.m-l-xs { margin-left: 0.25rem; }
+.p-l-xs { padding-left: 0.25rem; }
+.m-sm { margin: 0.5rem; }
+.p-sm { padding: 0.5rem; }
+.m-t-sm { margin-top: 0.5rem; }
+.p-t-sm { padding-top: 0.5rem; }
+.m-r-sm { margin-right: 0.5rem; }
+.p-r-sm { padding-right: 0.5rem; }
+.m-b-sm { margin-bottom: 0.5rem; }
+.p-b-sm { padding-bottom: 0.5rem; }
+.m-l-sm { margin-left: 0.5rem; }
+.p-l-sm { padding-left: 0.5rem; }
+.m-md { margin: 1rem; }
+.p-md { padding: 1rem; }
+.m-t-md { margin-top: 1rem; }
+.p-t-md { padding-top: 1rem; }
+.m-r-md { margin-right: 1rem; }
+.p-r-md { padding-right: 1rem; }
+.m-b-md { margin-bottom: 1rem; }
+.p-b-md { padding-bottom: 1rem; }
+.m-l-md { margin-left: 1rem; }
+.p-l-md { padding-left: 1rem; }
+.m-lg { margin: 2rem; }
+.p-lg { padding: 2rem; }
+.m-t-lg { margin-top: 2rem; }
+.p-t-lg { padding-top: 2rem; }
+.m-r-lg { margin-right: 2rem; }
+.p-r-lg { padding-right: 2rem; }
+.m-b-lg { margin-bottom: 2rem; }
+.p-b-lg { padding-bottom: 2rem; }
+.m-l-lg { margin-left: 2rem; }
+.p-l-lg { padding-left: 2rem; }
+.m-xl { margin: 4rem; }
+.p-xl { padding: 4rem; }
+.m-t-xl { margin-top: 4rem; }
+.p-t-xl { padding-top: 4rem; }
+.m-r-xl { margin-right: 4rem; }
+.p-r-xl { padding-right: 4rem; }
+.m-b-xl { margin-bottom: 4rem; }
+.p-b-xl { padding-bottom: 4rem; }
+.m-l-xl { margin-left: 4rem; }
+.p-l-xl { padding-left: 4rem; }
+.m-xxl { margin: 8rem; }
+.p-xxl { padding: 8rem; }
+.m-t-xxl { margin-top: 8rem; }
+.p-t-xxl { padding-top: 8rem; }
+.m-r-xxl { margin-right: 8rem; }
+.p-r-xxl { padding-right: 8rem; }
+.m-b-xxl { margin-bottom: 8rem; }
+.p-b-xxl { padding-bottom: 8rem; }
+.m-l-xxl { margin-left: 8rem; }
+.p-l-xxl { padding-left: 8rem; }
+
+.error {
+  color: $danger ;
+}
+.error_notification {
+  color: $danger ;
+  text-align: center; 
+}
+.pagination {
+  //visibility: hidden;
 }
 .tag {
   margin: 0 8px 0 0;
@@ -56,6 +149,15 @@ a {
 .follow:hover  i {
   transition: all 0.3s ease-out;
   transform: rotate(180deg);
+}
+
+.rounded {
+  border-radius: 90%;
+}
+#profile-container {
+  position: fixed;
+  height: auto;
+  width: 23%;
 }
 #drop_zone {
   position: relative;
@@ -247,7 +349,9 @@ width: 100%;
     }
   }
 }
-
+.comment-form {
+  margin: 10px 0 ;
+}
 .info-bar span{
   margin-right: 30px;
 }
@@ -265,9 +369,7 @@ width: 100%;
   background-color: #282828 !important;
 }
 
-.user-icon {
-  border-radius: 50px;
-}
+
 
 .border-bottom {
   border-bottom: 1px solid #e1e4e8;
@@ -305,3 +407,109 @@ a:hover {
   display: block;
 }
 
+@media only screen and (max-width: 800px) {
+  #profile-container {
+    position: static;
+    width: 100%; 
+    text-align: center; 
+  }
+}
+
+.tag-cloud-container {
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  padding: 20px;
+  background: white;
+  @media only screen and (max-width: 800px) {
+    padding: 10px;
+  }
+}
+
+.tag-cloud-container span  {
+  font-weight: 500;
+  margin: 5px;
+  font-size: .75rem;
+}
+
+.error {
+  padding-top: 15%;
+  width: 100%;
+  height: 100%;
+}
+
+.error-title {
+  font-size: 5rem;
+}
+
+.messages-wrapper {
+  padding: 10px ;
+  background-color: #f4f4f4;
+  height: 70%;
+  overflow-y:scroll;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  margin-top: 10px;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+.messages-wrapper::-webkit-scrollbar { width: 0; }
+.message-wrapper {
+  max-width: 80% ;
+  width: auto;
+  height: auto;
+  margin: 5px 0 ;
+  background-color: #ffffff;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  display: inline-block;
+
+}
+.exp {
+  display: block; /* смещает только блоки */ 
+  margin-left: auto;
+}
+
+.chat-container {
+  height: 600px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  border-radius: 2px;
+  margin-top: 10px;
+  padding: 20px;
+  background: white;
+}
+
+.blur-image:hover {
+-webkit-filter: blur(2px);
+filter: blur(2px);
+}
+
+.dialogs-container {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  border-radius: 2px;
+}
+
+.dialog-container {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+}
+.last-message {
+  font-size: .9em;
+  font-weight: 400;
+}
+
+
+
+
+.pagination { padding: 3px; margin: 3px; } 
+.pagination a { padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #aaaadd; text-decoration: none; color: #000099; } 
+.pagination a:hover, 
+.pagination a:active { border: 1px solid #000099; color: #000; } 
+.pagination span.current { padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #000099; font-weight: bold; background-color: #000099; color: #FFF; } 
+.pagination span.disabled { padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #eee; color: #ddd; }

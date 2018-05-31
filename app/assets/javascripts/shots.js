@@ -102,7 +102,7 @@ document.addEventListener("turbolinks:load", function() {
   Shots.shotHover(); 
 
   $('#submit').on('click', function(){
-    $(this).addClass("is-invisible");
+    $(this).hide();
     $('#submit-wrap').append("<a class='button is-danger is-loading'>Loading</a>");
   });
 
