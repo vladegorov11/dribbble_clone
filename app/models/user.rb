@@ -8,25 +8,29 @@ class User < ApplicationRecord
   has_many		:comments, dependent: :destroy
   has_many 		:follows
   has_many 		:designers, through: :follows
+  has_and_belongs_to_many  :roles
   acts_as_voter
 
-  after_create	:default_role
+  #after_create	:default_role
 
-  def default_role
-  	self.update(role: 'user')	
-  end
+ 
 
   def admin?
-  	self.role == 'admin'
+  	 check_role(self, "admin")
   end
 
   def user? 
-  	self.role == 'user'
+  	check_role(self, "user")
   end
 
-  def role? 
-  	self.role 
+  def vip? 
+  	check_role(self, "vip")
   end
 
+  private 
+
+  def check_role(user, role_name)
+    user.roles.map(&:name).include?(role_name)
+  end
   
 end

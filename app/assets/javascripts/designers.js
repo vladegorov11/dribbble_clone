@@ -1,9 +1,9 @@
 document.addEventListener("turbolinks:load", function() {
 	
 	var name = document.getElementById('name');
-	var description = document.getElementById('description');
+	//var description = document.getElementById('description');
 	var skills = document.getElementById('skills');
-	var test  = document.getElementById('show-skills');
+	var showSkill  = document.getElementById('show-skills');
 	var skillNew = [];
 
 	$('#name').bind("input ", function() { 
@@ -19,7 +19,7 @@ document.addEventListener("turbolinks:load", function() {
 		for (var i = 0; i < skill.length; i++) {
    		skillNew[i] = "<span class='tag  is-size-7'>"+ skill[i] +"</span>";
 		}
-		test.innerHTML = skillNew;
+		showSkill.innerHTML = skillNew.join(' ');
 		skillNew = [];
 	});
 
