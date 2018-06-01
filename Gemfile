@@ -43,6 +43,7 @@ gem 'will_paginate' , '~> 3.1.0'
 gem 'pundit'
 gem 'evil_icons'
 gem 'file_validators'
+gem 'fog'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

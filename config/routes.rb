@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   root 'shots#index'
   resources :shots  do
     resources :comments do
-      member do 
-        put 'like', to: "comments#like"
-        put 'unlike', to: "comments#unlike"
-      end
+      #member do 
+        resources :reports, only: [:new, :create]
+      #end
     end
+    resources :reports, only: [:new, :create]
     member do 
       put 'like', to: "shots#like"
       put 'unlike', to: "shots#unlike"

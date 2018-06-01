@@ -12,7 +12,7 @@
     <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
   <%end%>
   <%= link_to conversations_path do %>
-    <span >Messages: </span>
+    <span >Messages: <%= Message.unread_message_count(current_user)%></span>
   <%end%>
 </div>
 <section class="section">
@@ -37,16 +37,13 @@
               <div class="designer-city"><%= @designer.city %></div>
             </div>
           <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
-          <div>
-
-
           <% if @designer.user.id != current_user.id %>
-            <div class="item">
+            <div class="item has-text-centered m-t-sm">
                <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button '%>
             </div>
           <% end %>
+          <div>
 
-             
           <hr>
           <h3>DESCRIPTION</h3>
           <div class="designer-description"><%= truncate(@designer.description, length: 200) %></div>

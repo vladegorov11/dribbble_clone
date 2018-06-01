@@ -7,11 +7,12 @@ class Shot < ApplicationRecord
   has_many       :comments, dependent: :destroy
   has_many       :taggings, dependent: :destroy
   has_many       :tags, through: :taggings
+  has_many       :reports, as: :reportable
   
-  validates :user_shot, presence: true
-  validates :title, presence: true, length: { in: 6..100 }
-  validates :description, presence: true,  length: { in: 20..1000 }
-  validate :my_valid
+  validates      :user_shot, presence: true
+  validates      :title, presence: true, length: { in: 6..100 }
+  validates      :description, presence: true,  length: { in: 20..1000 }
+  validate       :my_valid
 
   is_impressionable counter_cache: true
 

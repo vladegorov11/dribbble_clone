@@ -1,0 +1,6 @@
+
+
+<%= simple_form_for([@shot, @raportable, @report]) do |f|%>
+<%= f.text_area :body, placeholder: "Add a comment" %><br/>
+<%= f.submit "Add Comment" %>
+<%end%>

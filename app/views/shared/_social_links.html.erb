@@ -1,21 +1,23 @@
 <hr>
 <div <%="style=font-size:#{item_size}em;"%> class="has-text-centered">
-  <%= link_to root_path do %>
+  <%= link_to designer.twitter_link do %>
     <span class="icon"><i class="fa fa-twitter"></i></span>
   <%end if designer.twitter_link.present? %>
-  <%= link_to root_path do %>
+  <%= link_to designer.facebook_link do %>
     <span class="icon"><i class="fa fa-instagram"></i></span>
   <%end if designer.facebook_link.present? %>
-  <%= link_to root_path do %>
+  <%= link_to designer.instagram_link do %>
     <span class="icon"><i class="fa fa-facebook"></i></span>
   <%end if designer.instagram_link.present? %>
-  <%if user_signed_in? %>
-    <% if policy(designer).follow? %>
-      <% unless designer.follow? current_user %>
-        <%= link_to "Follow",follow_designer_path(designer), class: 'button is-info'%>
-      <%else%>
-        <%= link_to "Unfollow",unfollow_designer_path(designer), class: 'button is-info' %> 
+  <div>
+    <%if user_signed_in? %>
+      <% if policy(designer).follow? %>
+        <% unless designer.follow? current_user %>
+          <%= link_to "Follow",follow_designer_path(designer), class: 'button is-info'%>
+        <%else%>
+          <%= link_to "Unfollow",unfollow_designer_path(designer), class: 'button is-info' %> 
+        <%end%>
       <%end%>
-    <%end%>
-  <%end%> 
+    <%end%> 
+  </div>
 </div>

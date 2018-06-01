@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   before_action :comment_params, only: [:create]
-  before_action :find_shot, only: [:create, :destroy,:like, :unlike]
+  before_action :find_shot, only: [:create, :destroy]
   
   def create
     @comment = @shot.comments.create(comment_params)
@@ -28,6 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:name, :response)
+    params.require(:comment).permit( :response)
   end
 end

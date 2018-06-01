@@ -2,9 +2,9 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :shot, :counter_cache => true
+  has_many :reports, as: :reportable
   acts_as_votable
 
-  validates :name, presence: true
   validates :response, presence: true,  length: { in: 2..1000 }
 
 

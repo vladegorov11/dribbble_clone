@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many		:comments, dependent: :destroy
   has_many 		:follows
   has_many 		:designers, through: :follows
+  has_many  :reports
   has_and_belongs_to_many  :roles
   acts_as_voter
 
