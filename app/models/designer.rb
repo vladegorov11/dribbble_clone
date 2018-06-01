@@ -35,6 +35,16 @@ class Designer < ApplicationRecord
   def self.per_page
     10
   end
+
+  def vip? 
+  end
+
+  def default?
+    
+  end
+
+  def status_checker 
+  end
 end
 
 

@@ -11,3 +11,4 @@ class ConversationPolicy
   end
 
 end
+

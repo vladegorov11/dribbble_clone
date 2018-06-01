@@ -27,4 +27,6 @@ class User < ApplicationRecord
   def role? 
   	self.role 
   end
+
+  
 end

@@ -11,6 +11,7 @@ class Shot < ApplicationRecord
   validates :user_shot, presence: true
   validates :title, presence: true, length: { in: 6..100 }
   validates :description, presence: true,  length: { in: 20..1000 }
+  validate :my_valid
 
   is_impressionable counter_cache: true
 
@@ -48,6 +49,15 @@ class Shot < ApplicationRecord
     12
   end
 
+  def my_valid
+    designer = Designer.find(self.designer_id)
+    puts designer.shots.count 
+    if designer.shots.count > 10 
+      self.errors.add(:user_shot, "You can not add more than 10 shots")
+    end
+  end
+
+  
 
   # t.string "title"
   # t.text "description"
