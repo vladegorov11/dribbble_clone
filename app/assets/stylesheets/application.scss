@@ -39,7 +39,7 @@ a {
   display: none;
   transition:  ease-out 0.3s;
 }
-m-none { margin: 0; }
+.m-none { margin: 0; }
 .p-none { padding: 0; }
 .m-t-none { margin-top: 0; }
 .p-t-none { padding-top: 0; }
@@ -120,15 +120,15 @@ m-none { margin: 0; }
 .m-l-xxl { margin-left: 8rem; }
 .p-l-xxl { padding-left: 8rem; }
 
+.file-input {
+  display: none;
+}
 .error {
   color: $danger ;
 }
 .error_notification {
   color: $danger ;
   text-align: center; 
-}
-.pagination {
-  //visibility: hidden;
 }
 .tag {
   margin: 0 8px 0 0;
@@ -509,8 +509,6 @@ filter: blur(2px);
   font-size: .9em;
   font-weight: 400;
 }
-
-
 
 
 .pagination { 

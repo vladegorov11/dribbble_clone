@@ -11,3 +11,4 @@ class Message < ActiveRecord::Base
 		where('read = ? ', false).where("user_id != ?",user.id ).count
 	end
 end
+

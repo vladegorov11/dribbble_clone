@@ -2,7 +2,6 @@ class DesignersController < ApplicationController
   
   before_action :set_designer, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :follow, :unfollow]
-
   def index
     @designers = Designer.includes(:shots)
     authorize @designers
@@ -68,7 +67,6 @@ class DesignersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   private
-
     def set_designer
       @designer = Designer.find(params[:id])
     end

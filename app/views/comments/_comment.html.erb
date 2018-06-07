@@ -18,8 +18,13 @@
          <%= link_to 'Delete', [@shot, comment],
                     method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
       <% end %>
-      <%= link_to 'Report', new_shot_comment_report_path(@shot, comment)%>
+      
     </article>
+    <div class="p-b-md">
+      <%= link_to new_shot_comment_report_path(@shot, comment), title: 'report' , class: "is-pulled-right " do %>
+        <p><i class="fa fa-bullhorn"></i></p>
+      <% end %>
+    </div>
   </div>
 <%end%>
 

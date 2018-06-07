@@ -8,9 +8,7 @@ Rails.application.routes.draw do
   root 'shots#index'
   resources :shots  do
     resources :comments do
-      #member do 
-        resources :reports, only: [:new, :create]
-      #end
+      resources :reports, only: [:new, :create]
     end
     resources :reports, only: [:new, :create]
     member do 

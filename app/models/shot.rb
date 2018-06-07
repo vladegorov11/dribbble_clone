@@ -1,21 +1,23 @@
 class Shot < ApplicationRecord
 
   include Filterable
-
+  SHOT_STATUS = ["Publish", "Reject", "Created"]
   belongs_to     :designer, counter_cache: true
   mount_uploader :user_shot, UserShotUploader
   has_many       :comments, dependent: :destroy
   has_many       :taggings, dependent: :destroy
   has_many       :tags, through: :taggings
   has_many       :reports, as: :reportable
-  
+  before_create  :my_valid
   validates      :user_shot, presence: true
   validates      :title, presence: true, length: { in: 6..100 }
   validates      :description, presence: true,  length: { in: 20..1000 }
-  validate       :my_valid
-
+  #validate       :my_valid
+  validates      :status, inclusion: { in: SHOT_STATUS, message: "%{value} is not a valid status" }
   is_impressionable counter_cache: true
-
+  
+  #JOB_TYPES = ["Full-time", "Part-time", "Contract", "Freelance"]
+  
   acts_as_votable
 
   scope :debut, -> { where(id: Designer.where('shots_count <= ?', 3).map {|designer| designer.shots.ids})}
@@ -51,14 +53,11 @@ class Shot < ApplicationRecord
   end
 
   def my_valid
-    designer = Designer.find(self.designer_id)
-    puts designer.shots.count 
-    if designer.shots.count > 10 
-      self.errors.add(:user_shot, "You can not add more than 10 shots")
+    if self.designer.shots.count > 10
+      false 
     end
   end
 
-  
 
   # t.string "title"
   # t.text "description"

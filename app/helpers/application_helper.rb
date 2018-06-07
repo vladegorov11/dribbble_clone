@@ -7,4 +7,13 @@ module ApplicationHelper
 	def verbose_date(date)
 		date.strftime('%B %d %Y %T')
 	end
+
+	def bulma_class_for(name)
+		{success: "is-primary",
+		 error: "is-danger",
+		 danger: "is-danger",
+		 alert: "is-warning",
+		 notice: "is-info"
+		}[name.to_sym] || name
+	end
 end
