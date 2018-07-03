@@ -1,12 +1,13 @@
 class Designer < ApplicationRecord
   
-  has_many   :shots, dependent: :destroy
   belongs_to :user
+  has_many   :cards, dependent: :destroy
+  has_many   :shots, dependent: :destroy
   has_many   :abilities
   has_many   :skills, through: :abilities
   has_many   :follows
   has_many   :users, through: :follows 
-
+  accepts_nested_attributes_for :cards, allow_destroy: true
   validates :name, presence: true, uniqueness: true, length: { in: 6..30 }
   validates :description, presence: true, length: { in: 50..250 }
   validates :city, presence: true, length: { in: 2..50 }
@@ -29,22 +30,17 @@ class Designer < ApplicationRecord
   end
 
   def follow? user 
-    self.users.include?(user) ? true : false 
+    self.users.include?(user) 
   end
 
+  def  followers
+    self.users
+  end
+    
   def self.per_page
     10
   end
 
-  def vip? 
-  end
-
-  def default?
-    
-  end
-
-  def status_checker 
-  end
 end
 
 

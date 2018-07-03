@@ -10,14 +10,6 @@
     <span class="icon"><i class="fa fa-facebook"></i></span>
   <%end if designer.instagram_link.present? %>
   <div>
-    <%if user_signed_in? %>
-      <% if policy(designer).follow? %>
-        <% unless designer.follow? current_user %>
-          <%= link_to "Follow",follow_designer_path(designer), class: 'button is-info'%>
-        <%else%>
-          <%= link_to "Unfollow",unfollow_designer_path(designer), class: 'button is-info' %> 
-        <%end%>
-      <%end%>
-    <%end%> 
+    
   </div>
 </div>

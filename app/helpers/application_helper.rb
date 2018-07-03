@@ -16,4 +16,10 @@ module ApplicationHelper
 		 notice: "is-info"
 		}[name.to_sym] || name
 	end
+
+	def notification_present? user 
+		if Notification.unread_count(user) != 0 
+			"<div id='notification-count' class='rounded'>#{ Notification.unread_count(user) }</div>".html_safe
+		end 
+	end 
 end

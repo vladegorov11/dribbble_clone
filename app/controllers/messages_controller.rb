@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  layout 'communion.html.erb' 
+  layout 'designer.html.erb' 
   before_action do
    @conversation = Conversation.find(params[:conversation_id])
   end
@@ -17,12 +17,6 @@ def index
    @messages = @conversation.messages
   end
   read_update @messages
- # if @messages.last
-
- #  if @messages.user_id != current_user.id
- #   @messages.each {|msg| msg.update(read: true)}
- #  end
- # end
 @message = @conversation.messages.new
  end
 def new

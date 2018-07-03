@@ -1,22 +1,29 @@
+require 'miro'
 class Shot < ApplicationRecord
 
   include Filterable
-  SHOT_STATUS = ["Publish", "Reject", "Created"]
+  SHOT_STATUS = %w[
+                  publish 
+                  ban 
+                  draft].freeze
   belongs_to     :designer, counter_cache: true
   mount_uploader :user_shot, UserShotUploader
   has_many       :comments, dependent: :destroy
   has_many       :taggings, dependent: :destroy
   has_many       :tags, through: :taggings
+
+  has_many       :shot_hues, dependent: :destroy
+  has_many       :hues , through: :shot_hues 
+
   has_many       :reports, as: :reportable
   before_create  :my_valid
   validates      :user_shot, presence: true
   validates      :title, presence: true, length: { in: 6..100 }
   validates      :description, presence: true,  length: { in: 20..1000 }
-  #validate       :my_valid
   validates      :status, inclusion: { in: SHOT_STATUS, message: "%{value} is not a valid status" }
   is_impressionable counter_cache: true
-  
-  #JOB_TYPES = ["Full-time", "Part-time", "Contract", "Freelance"]
+	
+  after_save :hex_colors
   
   acts_as_votable
 
@@ -39,7 +46,7 @@ class Shot < ApplicationRecord
   scope :year , -> {where(created_at: 1.year.ago..DateTime.now)}
 
   scope :week, -> {where(created_at: 1.week.ago..DateTime.now)}
-
+  
   def all_tags
     self.tags.map(&:name).join(', ')
   end
@@ -58,6 +65,14 @@ class Shot < ApplicationRecord
     end
   end
 
+  def colors 
+    self.hues.map(&:name)  
+  end
+
+  def hex_colors
+    colors = Miro::DominantColors.new(self.user_shot.path)
+    self.hues = colors.to_hex.map {|name| Hue.where(name: name).first_or_create!}
+  end
 
   # t.string "title"
   # t.text "description"

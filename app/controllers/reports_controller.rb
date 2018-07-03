@@ -3,20 +3,23 @@ class ReportsController < ApplicationController
   before_action :find_raportable 
 
   def new 
+    @report_types = ReportType.all
     @report = Report.new
   end
 
   def create
     @report = @reportable.reports.new report_params
     @report.user_id = current_user.id
+    respond_to do |format|
       if @report.save
-        redirect_to root_path, notice: 'Your report was successfully posted!'
+        format.html { redirect_to root_path, notice: 'Your report was successfully posted!' }
+        format.json { render :show, status: :created, location: @designer }
       else
-        redirect_to root_path, notice: "Your report wasn't posted!"
+        format.html { render :new }
+        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
+    end
   end
-
-
   private
 
   def find_raportable
@@ -26,6 +29,7 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:body)
+    params.require(:report).permit(:body, :report_type_id)
   end
+
 end

@@ -1,5 +1,5 @@
 class DesignersController < ApplicationController
-  
+  layout 'designer', only: [:followers]
   before_action :set_designer, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :follow, :unfollow]
   def index
@@ -66,13 +66,24 @@ class DesignersController < ApplicationController
     @designer.unfollow(current_user)
     redirect_back(fallback_location: root_path)
   end
+
+  def likers
+    @likers = Shot.find_by(designer_id: 2).impressions
+  end
+
+  def followers
+    @designer = current_user.designer
+    @follows = current_user.designer.followers
+  end
+
   private
+  
     def set_designer
       @designer = Designer.find(params[:id])
     end
 
     def designer_params
       params.require(:designer).permit(:name, :description, :all_skills, :city, :phone,
-       :instagram_link, :facebook_link, :twitter_link)
+       :instagram_link, :facebook_link, :twitter_link, cards_attributes: [:id, :number, :year, :month, :cvv, :_destroy])
     end
 end

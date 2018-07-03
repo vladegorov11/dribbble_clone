@@ -14,10 +14,19 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require react
+//= require react_ujs
+//= require components
+//= require jquery_nested_form
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 
+$(window).resize(function(){
+  console.log($(window).width());
+});
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('turbolinks:load', function () {
 
   // Get all "navbar-burger" elements
   var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);

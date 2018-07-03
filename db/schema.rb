@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605065116) do
+ActiveRecord::Schema.define(version: 20180702135448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20180605065116) do
     t.datetime "updated_at", null: false
     t.index ["designer_id"], name: "index_abilities_on_designer_id"
     t.index ["skill_id"], name: "index_abilities_on_skill_id"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "number"
+    t.integer "month"
+    t.integer "year"
+    t.integer "cvv"
+    t.integer "designer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["designer_id"], name: "index_cards_on_designer_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -56,6 +67,12 @@ ActiveRecord::Schema.define(version: 20180605065116) do
   create_table "follows", force: :cascade do |t|
     t.integer "designer_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hues", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -97,13 +114,40 @@ ActiveRecord::Schema.define(version: 20180605065116) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", id: :serial, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "actor_id"
+    t.string "notify_type", null: false
+    t.string "target_type"
+    t.integer "target_id"
+    t.string "second_target_type"
+    t.integer "second_target_id"
+    t.string "third_target_type"
+    t.integer "third_target_id"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "notify_type"], name: "index_notifications_on_user_id_and_notify_type"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "report_types", force: :cascade do |t|
+    t.string "name"
+    t.integer "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_report_types_on_report_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string "body"
+    t.integer "report_type_id"
     t.integer "user_id"
     t.integer "reportable_id"
     t.string "reportable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["report_type_id"], name: "index_reports_on_report_type_id"
     t.index ["reportable_id"], name: "index_reports_on_reportable_id"
     t.index ["reportable_type"], name: "index_reports_on_reportable_type"
     t.index ["user_id"], name: "index_reports_on_user_id"
@@ -120,6 +164,15 @@ ActiveRecord::Schema.define(version: 20180605065116) do
     t.integer "user_id"
   end
 
+  create_table "shot_hues", force: :cascade do |t|
+    t.bigint "shot_id"
+    t.bigint "hue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hue_id"], name: "index_shot_hues_on_hue_id"
+    t.index ["shot_id"], name: "index_shot_hues_on_shot_id"
+  end
+
   create_table "shots", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -133,7 +186,7 @@ ActiveRecord::Schema.define(version: 20180605065116) do
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
     t.integer "comments_count", default: 0
-    t.string "status"
+    t.string "status", default: "draft"
     t.index ["cached_votes_down"], name: "index_shots_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_shots_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_shots_on_cached_votes_total"
@@ -197,6 +250,8 @@ ActiveRecord::Schema.define(version: 20180605065116) do
 
   add_foreign_key "abilities", "designers"
   add_foreign_key "abilities", "skills"
+  add_foreign_key "shot_hues", "hues"
+  add_foreign_key "shot_hues", "shots"
   add_foreign_key "taggings", "shots"
   add_foreign_key "taggings", "tags"
 end

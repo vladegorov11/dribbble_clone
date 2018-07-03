@@ -1,0 +1,12 @@
+<div class="box">
+	<span class="is-pulled-right"><%= l notification.created_at, format: :short %></span>
+	<span class="image is-30x30 user-thumb">
+      <%= gravatar_image_tag(notification.actor.email.gsub('spam', 'mdeering'), alt: notification.actor.name, gravatar: { size: 30 }) %>
+	</span>
+	<%#= link_to notification.actor do %>
+	<strong><%= notification.actor.name %></strong>
+	<%#end%>
+	<p> Follow your profile </p>
+	
+	<%#= image_tag notification.second_target.user_shot_url unless notification.second_target.user_shot.blank? %>
+</div>

@@ -3,6 +3,7 @@ class ShotsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
   before_action :check_designer_shot_count, only: [:create, :new]
+
   def index
     begin
       @shots = Shot.filter(params.slice(:sort, :date, :list).permit!).current_page(params[:page]) 
@@ -77,13 +78,16 @@ class ShotsController < ApplicationController
       format.js {render layout:false}
     end
   end
+
   private
+
     def check_designer_shot_count
       if current_user.designer.shots.count >= 10 
-        flash[:alert] = "you post count > 10. Bay Vip account and хуярь сколько угодно постов "
+        flash[:alert] = "you post count > 10. Bay Vip account and хуярь сколько угодно постов"
         redirect_to(request.referrer || root_path)
       end
     end
+
     def set_shot
       @shot = Shot.find(params[:id])
     end

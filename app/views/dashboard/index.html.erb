@@ -1,0 +1,6 @@
+<div class="columns">
+	<div class="column is-5">
+		<%= line_chart Shot.group_by_day(:created_at).count %>
+	</div>
+</div>
+

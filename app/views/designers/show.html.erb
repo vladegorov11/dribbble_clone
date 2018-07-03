@@ -1,25 +1,49 @@
-<div class="profile-container  has-text-centered is-size-6 has-text-weight-semibold info-bar">
-  <%= link_to root_path do %>
-    <span ">Shots: <%= @designer.shots.count%></span>
+<% if user_signed_in? %>
+  <%if current_user.designer? && current_user.designer.id == @designer.id%>
+    <div class="profile-container  has-text-centered is-size-6 has-text-weight-semibold info-bar">
+      <%= link_to designer_path(@designer) do %>
+        <span ">Shots: <%= @designer.shots.count%></span>
+      <%end%>
+      <%= link_to followers_designer_path(@designer) do %>
+        <span >Followers: <%= @designer.follows.count%></span>
+      <%end%>
+      <%= link_to root_path do %>
+        <span >likes:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
+      <%end%>
+      <%= link_to designer_comments_path(@designer) do %>
+        <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
+      <%end%>
+      <%= link_to conversations_path do %>
+        <span >Messages: <%= current_user.all_unread_messages %></span>
+      <%end%>
+    </div>
   <%end%>
-  <%= link_to root_path do %>
-    <span >Followers: <%= @designer.follows.count%></span>
-  <%end%>
-  <%= link_to root_path do %>
-    <span >likes:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
-  <%end%>
-  <%= link_to root_path do %>
-    <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
-  <%end%>
-  <%= link_to conversations_path do %>
-    <span >Messages: <%= Message.unread_message_count(current_user)%></span>
-  <%end%>
-</div>
+<%end%>
 <section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column is-3" :class="{formstatic: scrollPosition < 100, formfixed: scrollPosition > 100}">
+      <div class="column is-3">
         <div class="profile-container">
+          <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "profile-avatar",gravatar: { size: 80 }); %>
+          <div class="tests">
+            <div class="user-name"><%= @designer.name %></div>
+            <div class="designer-city"><%= @designer.city %></div>
+            <div class="has-text-right">
+              <%if user_signed_in? %>
+                <% if @designer.user.id != current_user.id %>
+                <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button is-info is-small'%>
+                <% end %>
+                <% if policy(@designer).follow? %>
+                  <% unless @designer.follow? current_user %>
+                    <%= link_to "Follow",follow_designer_path(@designer), class: 'button is-primary is-small'%>
+                  <%else%>
+                    <%= link_to "Unfollow",unfollow_designer_path(@designer), class: 'button is-primary is-small' %> 
+                  <%end%>
+                <%end%>
+              <%end%> 
+            </div>
+          </div>
+          <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
           <%if user_signed_in? %>
             <div class="has-text-right">
               <% if policy(@designer).edit? %>
@@ -29,33 +53,22 @@
               <% end %>
             </div>
           <% end %>
-          <div class="shot-full">
-            <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "rounded",gravatar: { size: 120 }); %>
-            </div>
-            <div class="shot-full">
-              <div class="user-name"><%= @designer.name %></div>
-              <div class="designer-city"><%= @designer.city %></div>
-            </div>
-          <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
-          <% if @designer.user.id != current_user.id %>
-            <div class="item has-text-centered m-t-sm">
-               <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button '%>
-            </div>
-          <% end %>
-          <div>
-
-          <hr>
-          <h3>DESCRIPTION</h3>
-          <div class="designer-description"><%= truncate(@designer.description, length: 200) %></div>
-          </div>
-          <hr>
-          <h3>SKILLS</h3>
-          <div class="designer-description">
-            <div class="tags">
-              <%=raw @designer.skills.map(&:name).map{|skill| link_to "<span class='tag  is-size-7'>#{skill}</span>".html_safe, skill_path(skill)}.join(' ')%>
-            </div>
-          </div>
         </div>
+          <hr>
+          <div class="profile-container">
+            <h3>DESCRIPTION</h3>
+            <div class="designer-description"><%= truncate(@designer.description, length: 200) %></div>
+          </div>
+          <hr>
+          <div class="profile-container">
+            <h3>SKILLS</h3>
+            <div class="designer-description">
+              <div class="tags">
+                <%=raw @designer.skills.map(&:name).map{|skill| link_to "<span class='tag  is-size-7'>#{skill}</span>".html_safe, skill_path(skill)}.join(' ')%>
+              </div>
+            </div>
+          </div>
+          
       </div>
       <div class="column is-9">
         <div class="columns  is-multiline " id="shots">

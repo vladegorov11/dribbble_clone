@@ -26,7 +26,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+#gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem "bulma-rails", "~> 0.6.1"
@@ -44,6 +44,12 @@ gem 'pundit'
 gem 'evil_icons'
 gem 'file_validators'
 gem 'fog'
+gem 'react-rails'
+gem "nested_form"
+gem "chartkick"
+gem 'groupdate'
+gem 'notifications', '~> 0.6.0'
+gem 'miro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

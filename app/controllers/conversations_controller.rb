@@ -1,10 +1,11 @@
 class ConversationsController < ApplicationController
 	before_action :authenticate_user!
 	layout :designer?
+
 	def index
 		@designer =  current_user.designer if current_user.designer.present?
 		@conversations = Conversation.where("sender_id = ? OR recipient_id = ?", current_user.id, current_user.id)
-	 end
+	end
 
 	def create
 		if Conversation.between(params[:sender_id],params[:recipient_id]).present?
@@ -17,13 +18,13 @@ class ConversationsController < ApplicationController
 	end
 
 private
+
 	def conversation_params
 		params.permit(:sender_id, :recipient_id)
 	end
 
 	def designer?
-		current_user.designer.present? ? 'communion.html.erb' : 'application.html.erb'
+		current_user.designer.present? ? 'designer.html.erb' : 'application.html.erb'
 	end
 	
-
 end

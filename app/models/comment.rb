@@ -7,6 +7,16 @@ class Comment < ApplicationRecord
 
   validates :response, presence: true,  length: { in: 2..1000 }
 
+  after_commit :create_notifications, on: [:create]
+
+  def create_notifications
+    Notification.create(
+      notify_type: 'comment',
+      actor: self.user,
+      user: self.shot.designer.user,
+      target: self,
+      second_target: self.shot)
+  end
 
 
     # t.string "name"

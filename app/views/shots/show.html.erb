@@ -76,14 +76,23 @@
                     <span class="vote_count"><%= pluralize(@shot.get_likes.size, 'Like') %></span>
                   <% end %>
               <% end %>
-
+              
             </div>
           </div>
           <div class="designer-description">
             <div class="tags">
-              <%#=raw @shot.tags.map(&:name).map{|tag| link_to "<span class='tag  is-size-7'>#{tag}</span>".html_safe, tag_path(tag)}.join(' ')%>
               <%= tags_list(@shot.tags)%>
             </div>
+          </div>
+          <div class="shot-wrapper color-box ">
+            <p>Dominant colors: </p>
+            <ul class='color-list'>
+              <% @shot.colors.each do |color| %>
+                <%= link_to root_path do %>
+                  <li  class='color-list-item' style=" background-color: <%= color %>;"></li>
+                <%end%>
+              <%end%>
+            </ul>
           </div>
           <h3 class="title is-5 has-text-centered m-t-md">More from 
           <%= link_to @shot.designer.name, designer_path(@shot.designer)%></h3>
@@ -91,6 +100,7 @@
             <%= render "more_from_designer"%>
           </div>
         </div>
+
       </div>
     </div>
   </div>
