@@ -15,7 +15,7 @@ CarrierWave.configure do |config|
       provider: 'aws',
       aws_access_key_id: ENV['S3_KEY'],
       aws_secret_access_key: ENV['S3_SECRET'],
-      region: 'us-east-1'
+      region: 'us-east-2'
     }
     config.fog_directory = ENV['S3_BUCKET_NAME']
   end
@@ -24,3 +24,4 @@ end
 # AWSAccessKeyId=AKIAINVRJMAYW7XJ4SQA
 # AWSSecretKey=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
 
+#heroku config:add  S3_BUCKET_NAME=dribbbleclone
