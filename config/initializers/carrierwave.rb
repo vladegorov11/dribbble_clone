@@ -1,6 +1,3 @@
-# config/initializers/carrierwave.rb
-# This file is not created by default so you might have to create it yourself.
-
 require 'carrierwave/storage/fog'
 
 CarrierWave.configure do |config|
@@ -17,14 +14,10 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['S3_SECRET'],
       region: 'us-east-1'
     }
+    config.cache_dir = "#{Rails.root}/tmp/uploads"   
+    config.s3_access_policy = :public_read
     config.fog_directory = ENV['S3_BUCKET_NAME']
   end
 end
 
-# AWSAccessKeyId=AKIAINVRJMAYW7XJ4SQA
-# AWSSecretKey=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
 
-#heroku config:add  S3_BUCKET_NAME=dribbbleclone
-
-#ENV['S3_KEY']
-#ENV['S3_SECRET']ENV['S3_BUCKET_NAME']
