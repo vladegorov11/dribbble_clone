@@ -1,5 +1,4 @@
 document.addEventListener("turbolinks:load", function() {
-	
 	var name = document.getElementById('name');
 	//var description = document.getElementById('description');
 	var skills = document.getElementById('skills');

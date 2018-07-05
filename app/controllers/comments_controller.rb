@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :comment_params, only: [:create]
   before_action :find_shot, only: [:create, :destroy]
   before_action :find_designer, only: [:index ]
-  layout 'designer.html.erb'
+  layout 'designer'
   def index 
     @comments = Comment.where(shot_id: @designer.shots.ids).includes(:user, :shot)
   end 

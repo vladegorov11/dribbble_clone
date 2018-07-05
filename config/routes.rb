@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       put 'unlike', to: "shots#unlike"
     end
   end
+  resources :hues, only: [:show]
   resources :skills, only: [:show]
   resources :tags, only: [:show]
   devise_for :users, controllers: {registrations: 'registrations'}

@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="title is-3"><%= @shot.title %></h1>
     <div class="columns">
-      <div class="column is-8">
+      <div class="column is-8 left">
         <span class="by has-text-grey-light">by</span>
         <div class="user-thumb">
           <%= gravatar_image_tag(@shot.designer.user.email.gsub('spam', 'mdeering'), alt: @shot.designer.user.name, gravatar: { size: 20 }); %>
@@ -31,22 +31,10 @@
           <div class="content">
             <%= @shot.description %>
           </div>
-          <section class="comments">
-            <h2 class="subtitle is-5"><%= pluralize(@shot.comments.count, 'Comment') %></h2>
-            <% if user_signed_in? %>
-              <div class="comment-form">
-                <h3 class="subtitle is-3">Leave a reply</h3>
-                <%= render 'comments/form' %>
-              </div>
-            <% else %>
-              <div class="content"><%= link_to 'Sign in', new_user_session_path %> to leave a comment.</div>
-            <% end %> 
-              <%= render 'comments/comment' %> 
-            <hr />
-          </section>
+          
         </div>
       </div>
-      <div class="column is-3 is-offset-1">
+      <div class="column is-3 is-offset-1 right">
         <div  id="">
           <div class="nav panel show-shot-analytics">
             <div class="panel-block views data">
@@ -88,7 +76,7 @@
             <p>Dominant colors: </p>
             <ul class='color-list'>
               <% @shot.colors.each do |color| %>
-                <%= link_to root_path do %>
+                <%= link_to hue_path(color) do %>
                   <li  class='color-list-item' style=" background-color: <%= color %>;"></li>
                 <%end%>
               <%end%>
@@ -96,12 +84,31 @@
           </div>
           <h3 class="title is-5 has-text-centered m-t-md">More from 
           <%= link_to @shot.designer.name, designer_path(@shot.designer)%></h3>
-          <div class="columns is-multiline m-t-md">
+          <div class="columns is-multiline m-t-md is-mobile">
             <%= render "more_from_designer"%>
           </div>
         </div>
 
       </div>
     </div>
+    <section class="comments">
+      <div class="columns">
+        <div class="column is-8 ">
+          <div class="shot-container">
+            <h2 class="subtitle is-5"><%= pluralize(@shot.comments.count, 'Comment') %></h2>
+            <% if user_signed_in? %>
+              <div class="comment-form">
+                <h3 class="subtitle is-3">Leave a reply</h3>
+                <%= render 'comments/form' %>
+              </div>
+            <% else %>
+              <div class="content"><%= link_to 'Sign in', new_user_session_path %> to leave a comment.</div>
+            <% end %> 
+              <%= render 'comments/comment' %> 
+            <hr />
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>

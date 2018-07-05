@@ -15,33 +15,47 @@
     <%= render 'shared/hero'%>
     <%= render 'shared/sort'%>
 
+  <% if user_signed_in? %>
+    <%if current_user.designer? && current_user.designer.id == @designer.id%>
     <div class="profile-container  has-text-centered is-size-6 has-text-weight-semibold info-bar">
-<%= link_to designer_path(@designer) do %>
-    <span ">Shots: <%= @designer.shots.count%></span>
-  <%end%>
-  <%= link_to followers_designer_path(@designer) do %>
-    <span >Followers: <%= @designer.follows.count%></span>
-  <%end%>
-  <%= link_to root_path do %>
-    <span >likes:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
-  <%end%>
-  <%= link_to designer_comments_path(@designer) do %>
-    <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
-  <%end%>
-  <%= link_to conversations_path do %>
-    <span >Messages: <%= current_user.all_unread_messages %></span>
-  <%end%>
-</div>
-<section class="section">
-  <div class="container">
+      <%= link_to designer_path(@designer) do %>
+        <span ">Shots: <%= @designer.shots.count%></span>
+      <%end%>
+      <%= link_to followers_designer_path(@designer) do %>
+        <span >Followers: <%= @designer.follows.count%></span>
+      <%end%>
+      <%= link_to root_path do %>
+        <span >likes:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
+      <%end%>
+      <%= link_to designer_comments_path(@designer) do %>
+        <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
+      <%end%>
+      <%= link_to conversations_path do %>
+        <span >Messages: <%= current_user.all_unread_messages %></span>
+      <%end%>
+    </div>
+    <%end%>
+    <%end%>
+    <section class="section">
+    <div class="container">
     <div class="columns">
-       <div class="column is-3">
+      <div class="column is-3">
         <div class="profile-container">
+          <%if user_signed_in? %>
+              <div class=" is-pulled-right">
+                <% if policy(@designer).edit? %>
+                  <%= link_to  edit_designer_path(@designer) do %>
+                    <span class="icon" style="font-size:1.5em;"><i class="fa fa-cog"></i></span>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
           <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "profile-avatar",gravatar: { size: 80 }); %>
-          <div class="tests">
+          <div class="profile-attr">
             <div class="user-name"><%= @designer.name %></div>
-            <div class="designer-city"><%= @designer.city %></div>
-            <div class="has-text-right">
+            <div class="designer-city"><%= @designer.city %></div> 
+          </div>
+           <div class="has-text-centered">
               <%if user_signed_in? %>
                 <% if @designer.user.id != current_user.id %>
                 <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button is-info is-small'%>
@@ -55,17 +69,23 @@
                 <%end%>
               <%end%> 
             </div>
-          </div>
-          <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
-          <%if user_signed_in? %>
-            <div class="has-text-right">
-              <% if policy(@designer).edit? %>
-                <%= link_to  edit_designer_path(@designer) do %>
-                  <span class="icon" style="font-size:1.5em;"><i class="fa fa-cog"></i></span>
-                <% end %>
-              <% end %>
+          <div class="columns has-text-centered is-mobile profile-count">
+            <div class="column ">
+              <p class="designer-city">SHOTS</p>
+              <p class="designer-city"> <%= @designer.shots.count%></p>
             </div>
-          <% end %>
+            <div class="column ">
+              <p class="designer-city">FOLLOWERS</p>
+              <p class="designer-city"><%= @designer.follows.count%></p>
+            </div>
+            <div class="column ">
+              <p class="designer-city">PROJECTS</p>
+              <p class="designer-city">4</p>
+            </div>
+          </div>
+          <div class="has-text-centered">
+              <%=render partial: "shared/social_links", locals: {item_size: 1.4, designer: @designer} %>
+          </div>
         </div>
           <hr>
           <div class="profile-container">
@@ -88,7 +108,7 @@
       </div>
       
     </div>
-  </div>
-</section>
+    </div>
+  </section>
   </body>
 </html>

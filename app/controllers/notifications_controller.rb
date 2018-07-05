@@ -1,6 +1,6 @@
 class NotificationsController < Notifications::ApplicationController
   before_action :authenticate_user!
-  layout 'designer.html.erb' 
+  layout 'designer' 
 
   def index
     @designer = current_user.designer

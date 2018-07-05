@@ -13,6 +13,9 @@ class Designer < ApplicationRecord
   validates :city, presence: true, length: { in: 2..50 }
   validates :phone, format: { with: /(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?/}, allow_blank: true 
   
+  def social_link_present?
+    self.twitter_link.present? || self.facebook_link.present? || self.instagram_link.present?
+  end
   def all_skills
     self.skills.map(&:name).join(', ')
   end

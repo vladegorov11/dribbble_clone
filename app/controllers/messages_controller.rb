@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  layout 'designer.html.erb' 
+  layout 'designer' 
   before_action do
    @conversation = Conversation.find(params[:conversation_id])
   end

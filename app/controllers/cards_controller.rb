@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 	before_action :card_params
-	layout 'designer.html.erb'
+	layout 'designer'
 	def index 
 	end
 

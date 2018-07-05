@@ -22,9 +22,7 @@
 //= require chartkick
 //= require_tree .
 
-$(window).resize(function(){
-  console.log($(window).width());
-});
+
 
 document.addEventListener('turbolinks:load', function () {
 
@@ -49,6 +47,6 @@ document.addEventListener('turbolinks:load', function () {
       });
     });
   }
-
+  
 });
 

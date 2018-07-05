@@ -1,0 +1,9 @@
+
+<section class="section shots-wrap">
+<h3 class="title is-5 has-text-centered"><%= "#{pluralize(@shots.count, 'Shot')} match your search: #{@hue.name}"%></h3>
+<div class="columns  is-multiline " id="shots">
+  	<%= render @shots%>
+ </div>
+</section>
+
+<%= will_paginate  @shots %>
