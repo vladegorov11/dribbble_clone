@@ -1,7 +1,7 @@
 <div class="columns">
 	<% @follows.each do |follower|%>
 		<div class="column is-3" >
-			<%= link_to follower.designer.present? ? follower.designer : follower  do %>
+			<%= link_to follower.designer.present? ? follower.designer : root_path  do %>
 				<div class="profile-container">
 					<%= gravatar_image_tag(follower.email.gsub('spam', 'mdeering'), alt: follower.name, class: "rounded",gravatar: { size: 60 }); %>
 					<%= follower.name%>
