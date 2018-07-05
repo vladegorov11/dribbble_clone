@@ -23,7 +23,7 @@ class Shot < ApplicationRecord
   validates      :status, inclusion: { in: SHOT_STATUS, message: "%{value} is not a valid status" }
   is_impressionable counter_cache: true
 	
-  after_save :find_and_create_hex_colors
+  #after_save :find_and_create_hex_colors
   
   acts_as_votable
 
