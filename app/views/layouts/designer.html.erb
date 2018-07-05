@@ -14,7 +14,6 @@
     <%= render 'shared/header'%> 
     <%= render 'shared/hero'%>
     <%= render 'shared/sort'%>
-
   <% if user_signed_in? %>
     <%if current_user.designer? && current_user.designer.id == @designer.id%>
     <div class="profile-container  has-text-centered is-size-6 has-text-weight-semibold info-bar">

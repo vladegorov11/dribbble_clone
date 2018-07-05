@@ -1,5 +1,5 @@
 class DesignersController < ApplicationController
-  layout 'designer', except: [:index, :edit, :new]
+  layout 'designer', except: [:index, :edit, :new, :create, :update]
   before_action :set_designer, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :follow, :unfollow]
   def index
