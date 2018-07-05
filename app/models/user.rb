@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many  :roles
   acts_as_voter
 
-  after_commit :set_default_role
+  #after_commit :set_default_role
 
   def all_unread_messages
     message_count = 0 
