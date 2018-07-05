@@ -23,7 +23,7 @@ class Shot < ApplicationRecord
   validates      :status, inclusion: { in: SHOT_STATUS, message: "%{value} is not a valid status" }
   is_impressionable counter_cache: true
 	
-  #after_save :find_and_create_hex_colors
+  after_save :find_and_create_hex_colors
   
   acts_as_votable
 
@@ -70,7 +70,7 @@ class Shot < ApplicationRecord
   end
 
   def find_and_create_hex_colors
-    colors = Miro::DominantColors.new(self.user_shot.path)
+    colors = Miro::DominantColors.new(self.user_shot.url)
     self.hues = colors.to_hex.map {|name| Hue.where(name: name).first_or_create!}
   end
 
