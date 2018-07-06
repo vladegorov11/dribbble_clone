@@ -1,14 +1,17 @@
 class Comment < ApplicationRecord
   
   default_scope { order(created_at: :desc) }
-
+  after_commit :create_notifications, on: [:create]
+  after_destroy :destroy_notifications
 
   belongs_to :user
   belongs_to :shot, :counter_cache => true
   has_many :reports, as: :reportable
   acts_as_votable
+
   validates :response, presence: true,  length: { in: 2..1000 }
-  after_commit :create_notifications, on: [:create]
+
+  
 
   def create_notifications
     Notification.create(
