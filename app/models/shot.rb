@@ -74,10 +74,5 @@ class Shot < ApplicationRecord
     self.hues = colors.to_hex.map {|name| Hue.where(name: name).first_or_create!}
   end
 
-  # t.string "title"
-  # t.text "description"
-  # t.integer "designer_id"
-  # t.datetime "created_at", null: false
-  # t.datetime "updated_at", null: false
-  # t.string "user_shot"
+
 end
