@@ -22,11 +22,11 @@
               </p>
               <hr>
               <p class="last-message">
-                last message: <%= truncate(conversation.messages.last.body, length: 60)  if conversation.messages.present?%>
+                last message: <%= truncate(conversation.messages.last.body, length: 60)  unless conversation.messages.last.nil?%>
               </p>
               <div class="is-pulled-right">
                   <span class="has-text-weight-semibold is-size-7 ">sent at </span><span class=" has-text-grey-light is-size-7">
-                    <%= verbose_date(conversation.messages.last.created_at) %>
+                    <%= verbose_date(conversation.messages.last.created_at) unless conversation.messages.last.nil?%>
                   </span>
                 </div>
             </div>
