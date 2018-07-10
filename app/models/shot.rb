@@ -70,9 +70,14 @@ class Shot < ApplicationRecord
   end
 
   def find_and_create_hex_colors
-    colors = Miro::DominantColors.new(self.user_shot.url)
+    colors = Miro::DominantColors.new(find_env(self))
     self.hues = colors.to_hex.map {|name| Hue.where(name: name).first_or_create!}
   end
 
+  private 
+
+  def find_env shot
+    Rails.env.production? ? shot.user_shot.url : shot.user_shot.path
+  end
 
 end

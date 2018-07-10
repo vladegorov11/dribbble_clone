@@ -19,9 +19,10 @@
           <p><i class="fa fa-bullhorn"></i></p>
         <% end %>
         <div class="shot-container">
+        <div>
           <div class="shot-full">
              <%= image_tag @shot.user_shot_url unless @shot.user_shot.blank? %>
-          </div>
+          </div></div>
           <% if user_signed_in? && (current_user.id == @shot.designer.user_id) %>    
             <div class="buttons has-addons">
               <%= link_to 'Edit', edit_shot_path(@shot), class: "button" %>
@@ -29,7 +30,7 @@
             </div>
           <% end %>
           <div class="content">
-            <%= @shot.description %>
+            <%= @shot.description.html_safe %>
           </div>
           
         </div>

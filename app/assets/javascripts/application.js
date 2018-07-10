@@ -17,6 +17,7 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require trix 
 //= require jquery_nested_form
 //= require Chart.bundle
 //= require chartkick

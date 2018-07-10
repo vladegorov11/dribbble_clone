@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require evil-icons
+ *= require trix
  *= require_tree .
  *= require_self
  */
@@ -28,6 +28,9 @@ $link-hover: darken($primary, 20%);
 html, body {
   min-height: 100vh;
   background-color: #f4f4f4;
+  text-size-adjust: none;
+  overflow-y: auto;
+  overflow-scrolling:touch;
 }
 hr {
   margin: 10px 0; 
@@ -144,7 +147,7 @@ a {
 .m-l-xxl { margin-left: 8rem; }
 .p-l-xxl { padding-left: 8rem; }
 
-.file-input {
+.file-area {
   display: none;
 }
 .error {
@@ -393,8 +396,15 @@ width: 100%;
 }
 .shot-full {
   text-align: center;
+  position: relative;
+  overflow: hidden; 
 }
-
+.shot-full img {
+  transition: all .3s ease;
+}
+.shot-full:hover img {
+    transform: scale(1.02);
+  }
 .hero.is-dark {
   background-color: #282828 !important;
 }
@@ -596,4 +606,14 @@ filter: blur(2px);
     width: 14%;
     height: 17px; 
     z-index: 99;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    #drop_zone {
+      display: none;
+    }
+    .file-area {
+      display: block;
+    }
   }

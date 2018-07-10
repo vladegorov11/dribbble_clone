@@ -33,7 +33,7 @@ gem "bulma-rails", "~> 0.6.1"
 gem 'devise', '~> 4.3'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'simple_form', '~> 3.5'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'impressionist', '~> 1.6'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'gravatar_image_tag'
@@ -45,11 +45,12 @@ gem 'evil_icons'
 gem 'file_validators'
 gem 'fog'
 gem 'react-rails'
-gem "nested_form"
-gem "chartkick"
+gem 'nested_form'
+gem 'chartkick'
 gem 'groupdate'
 gem 'notifications', '~> 0.6.0'
 gem 'miro'
+gem 'trix'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
