@@ -12,11 +12,7 @@
             <div class="content">
               <p>
                 <strong><%= comment.user.name %></strong>
-                <div id='<%=comment.id * 2 %>'><%=truncate(comment.response, length: 100)%></div>
-                <div id='<%= comment.id%>' style='display:none'><%= comment.response %></div>
-                <% if comment.response.length > 100 %>
-                  <a href = "javascript:void(0);" onClick="isOpen(<%=comment.id%>, <%=comment.id * 2%>)" class=" is-pulled-right">view all</a> 
-                <%end%>
+                
               </p>
             </div>
           </div>
@@ -26,6 +22,11 @@
           <% end %>
           
         </article>
+        <div id='<%=comment.id.to_s + 'n' %>'><%=truncate(comment.response, length: 100)%></div>
+        <div id='<%= comment.id%>' style='display:none'><%= comment.response %></div>
+        <% if comment.response.length > 100 %>
+          <a href = "javascript:void(0);" onClick="isOpen(<%=comment.id%>, <%=comment.id.to_s + 'n'%>)" class=" is-pulled-left">view all</a> 
+        <%end%>
         <div class="p-b-md">
           <%= link_to new_shot_comment_report_path(comment.shot, comment), title: 'report' , class: "is-pulled-right " do %>
             <p><i class="fa fa-bullhorn"></i></p>
