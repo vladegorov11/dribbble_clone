@@ -1,9 +1,10 @@
 <div class="column">
 	<div class="column is-8 is-offset-2">
-		<%= simple_form_for([@shot, @raportable, @report], html: { multipart: true }) do |f|%>
+
+		<%= simple_form_for(@reportable, html: { multipart: true }) do |f|%>
 			<%= f.error_notification %>
-		 	 <%= f.input :body, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' }, as: 'text' %>
-			
+		 	<%= f.input :body, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' }, as: 'text' %>
+
 			<div class="field ">
 		      <div class="control">
 		        <label class="label">Status:</label>
@@ -17,8 +18,8 @@
 		        </div>
 		      </div>
 		    </div>
+		    
 			<%= f.button :submit , class: 'button is-primary' %>
-
 		<%end%>
 	</div>
 </div>

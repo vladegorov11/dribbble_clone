@@ -29,8 +29,11 @@ gem 'jbuilder', '~> 2.5'
 #gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# css framework
 gem "bulma-rails", "~> 0.6.1"
+# Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise', '~> 4.3'
+# This gem provides a simple and extremely flexible way to upload files from Ruby applications
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'simple_form', '~> 3.5'
 gem 'mini_magick'
@@ -41,16 +44,20 @@ gem 'acts_as_votable', '~> 0.11.1'
 gem 'russian', '~> 0.6.0'
 gem 'will_paginate' , '~> 3.1.0'
 gem 'pundit'
-gem 'evil_icons'
 gem 'file_validators'
 gem 'fog'
 gem 'react-rails'
 gem 'nested_form'
 gem 'chartkick'
 gem 'groupdate'
+
 gem 'notifications', '~> 0.6.0'
+# Retrieving colors from an image
 gem 'miro'
+#  WYSIWYG editor 
 gem 'trix'
+# postgresql search
+gem 'pg_search'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

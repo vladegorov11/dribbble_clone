@@ -1,0 +1,14 @@
+ru:
+  shots:
+    edit: 'Редактировать'
+    delete: 'Удалить'
+    comment: 'Коментарии'
+    view: 'Просмотры'
+    like: 'Нравится'
+    report: 'Пожаловатся'
+    more_from: 'Еще от'
+    dominant_colors: 'Преобладающие цвета'
+    title: 'Название'
+    all_tags: 'Теги'
+    status: 'Статус'
+    description: 'Описание'

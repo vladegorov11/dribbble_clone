@@ -1,10 +1,10 @@
 <%if  current_page?(:controller => '/shots', :action => 'index')%>
 	<section class="container sort-wrapper is-fullhd">
 	 	<div class="container has-text-centered">
-	    <div class="dropdown is-hoverable">
+	 	 <div class="dropdown is-hoverable">
 	      <div class="dropdown-trigger" style="padding-right: 50px;">
 	        <a  aria-haspopup="true" aria-controls="dropdown-menu4">
-	          <span>Now</span>
+	          <span><%=t('filter.shots')%></span>
 	          <span class="icon is-small">
 	            <i class="fa fa-angle-down" aria-hidden="true"></i>
 	          </span>
@@ -12,16 +12,32 @@
 	      </div>
 	      <div class="dropdown-menu" id="dropdown-menu4" role="menu">
 	        <div class="dropdown-content">
-	        	<%= link_to 'week', request.params.merge(date: "week"), class: "dropdown-item"%>
-	     		<%= link_to 'month', request.params.merge(date: "month"), class: "dropdown-item"%>
-	     		<%= link_to 'year', request.params.merge(date: "year"), class: "dropdown-item"%>
+	        	<%= link_to t('filter.all_shots'), request.params.merge(list: "all"), class: "dropdown-item"%>
+          		<%= link_to t('filter.debut'), request.params.merge(list: "debut"), class: "dropdown-item"%>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="dropdown is-hoverable">
+	      <div class="dropdown-trigger" style="padding-right: 50px;">
+	        <a  aria-haspopup="true" aria-controls="dropdown-menu4">
+	          <span><%=t('filter.now')%></span>
+	          <span class="icon is-small">
+	            <i class="fa fa-angle-down" aria-hidden="true"></i>
+	          </span>
+	        </a>
+	      </div>
+	      <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+	        <div class="dropdown-content">
+	        	<%= link_to t('filter.week'), request.params.merge(date: "week"), class: "dropdown-item"%>
+	     		<%= link_to t('filter.month'), request.params.merge(date: "month"), class: "dropdown-item"%>
+	     		<%= link_to t('filter.year'), request.params.merge(date: "year"), class: "dropdown-item"%>
 	        </div>
 	      </div>
 	    </div>
 	    <div class="dropdown is-hoverable">
 	      <div class="dropdown-trigger">
 	        <a aria-haspopup="true" aria-controls="dropdown-menu4">
-	          <span>sort</span>
+	          <span><%=t('filter.sort')%></span>
 	          <span class="icon is-small">
 	            <i class="fa fa-angle-down" aria-hidden="true"></i>
 	          </span>
@@ -29,13 +45,15 @@
 	      </div>
 	      <div class="dropdown-menu" id="dropdown-menu4" role="menu">
 	        <div class="dropdown-content">
-	        	<%= link_to 'most viewed', request.params.merge(sort: "most_viewed"), class: "dropdown-item"%>
-	        	<%= link_to 'most liked', request.params.merge(sort: "most_liked"), class: "dropdown-item"%>
-	        	<%= link_to 'most commeted', request.params.merge(sort: "most_commented"), class: "dropdown-item"%>
-	        	<%= link_to 'popular', request.params.merge(sort: "popular"), class: "dropdown-item"%>
+	        	<%= link_to t('filter.viewed'), request.params.merge(sort: "most_viewed"), class: "dropdown-item"%>
+	        	<%= link_to t('filter.liked'), request.params.merge(sort: "most_liked"), class: "dropdown-item"%>
+	        	<%= link_to t('filter.commented'), request.params.merge(sort: "most_commented"), class: "dropdown-item"%>
+	        	<%= link_to t('filter.popular'), request.params.merge(sort: "popular"), class: "dropdown-item"%>
 	        </div>    
 	      </div>
 	    </div>
 	 	</div>
 	</section>
 <%end%>
+
+

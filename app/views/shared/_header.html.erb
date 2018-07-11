@@ -22,31 +22,26 @@
 
   <div id="navMenuColordark-example" class="navbar-menu">
     <div class="navbar-start">
-      <div class="navbar-item has-dropdown is-hoverable">
-        <%= link_to 'Shots', root_path , class:"navbar-link" %>
-        <div class="navbar-dropdown is-boxed">
-          <%= link_to 'All Shots', request.params.merge(list: "all"), class: "navbar-item"%>
-          <%= link_to 'Debut', request.params.merge(list: "debut"), class: "navbar-item"%>
-        </div>
-      </div>
-
-      <%= link_to 'Designers', designers_path , class:"navbar-item" %>
+      <%= link_to t('nav.shots'), root_path , class:"navbar-item" %>
+      <%= link_to t('nav.designers'), designers_path , class:"navbar-item" %>
     </div>
 
     <div class="navbar-end">
         <div class="navbar-brand">
+          <%= link_to 'Рус', {locale: :ru}, class:"navbar-item #{'is-active' if I18n.locale == :ru} " %>
+          <%= link_to 'Eng', {locale: :en}, class:"navbar-item #{'is-active' if I18n.locale == :en} " %>
         <% if user_signed_in? %>
               <% unless current_user.designer.blank?%>
                 <% if  current_user.designer.persisted?%>
                 
-                  <%= link_to new_shot_path, class:"navbar-item" do%>
+                  <%= link_to new_shot_path, title: t('nav.load_shot'), class:"navbar-item" do%>
                     <span class="icon "><i class="fa fa-cloud-upload fa-lg"></i></span>
                   <% end %>
 
-                  <%= link_to designer_path(current_user.designer), class:"navbar-item" do%>
+                  <%= link_to designer_path(current_user.designer),title: t('nav.profile'), class:"navbar-item" do%>
                     <span class="icon "><i class="fa fa-user fa-lg"></i></span>
                   <% end %>
-                  <%= link_to notifications_path(current_user.designer), class:"navbar-item" do%>
+                  <%= link_to notifications_path(current_user.designer),title: t('nav.notifications'), class:"navbar-item" do%>
                     <span class="icon "><i class="fa fa-bell fa-lg"></i></span>
                     <%= notification_present? current_user%>
                   <% end %>
@@ -56,7 +51,7 @@
                 <p class="control">
                   <%= link_to new_designer_path, class:"button is-primary "  do%>
                     <span class="icon "><i class="fa fa-upload fa-lg"></i></span>
-                    <span>Create designer profile</span>
+                    <span><%= t('nav.create_designer') %></span>
                   <% end %>
                 </p>
               </div>
@@ -64,13 +59,13 @@
 
               
               <%#= link_to current_user.name, edit_user_registration_path, class:"navbar-item" %>
-              <%= link_to  destroy_user_session_path, method: :delete, class:"navbar-item"  do %>
+              <%= link_to  destroy_user_session_path,title: t('nav.sign_out'), method: :delete, class:"navbar-item"  do %>
               <span class="icon "><i class="fa fa-sign-out fa-lg"></i></span>
               
               <%end%>
           <% else %>
-            <%= link_to "Sign In", new_user_session_path, class:"navbar-item" %>
-            <%= link_to "Sign up", new_user_registration_path, class:"navbar-item"%>
+            <%= link_to t('nav.sign_in'), new_user_session_path, class:"navbar-item" %>
+            <%= link_to t('nav.sign_up'), new_user_registration_path, class:"navbar-item"%>
           <% end %>
           </div>
     </div>

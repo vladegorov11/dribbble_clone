@@ -1,0 +1,28 @@
+ru: 
+  filter:
+    shots: Снимки
+    all_shots: 'Все снимки'
+    debut: 'Дебюты'
+    now:  Дата
+    month: Месяц
+    week: Неделя
+    year: Год
+    sort: 'Сортировка'
+    commented: "По комментариям"
+    liked: "По лайкам"
+    popular: "По популярности"
+    viewed: "По просмотрам"
+  nav: 
+    create_designer: "Создать профиль дизайнера"
+    designers: Дизайнеры
+    load_shot: "Загрузить снимки"
+    profile: Профайл
+    shots: Снимки
+    sign_out: Выйти
+    notifications: Уведомления
+    sign_in: Войти 
+    sign_up: Регистрация
+  hero: 
+    welcome:
+      text: "Над чем ты работаешь? <span class = 'has-text-gray-light'> Dribbble - это то, где дизайнеры вдохновляются и нанимаются. </ span>"
+      login: Войти 

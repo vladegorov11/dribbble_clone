@@ -1,0 +1,14 @@
+en:
+  shots:
+    edit: 'Edit'
+    delete: 'Delete'
+    comment: 'Comment'
+    view: 'View'
+    like: 'Like'
+    report: 'Report'
+    more_from: 'More from'
+    dominant_colors: 'Dominant colors'
+    title: 'Title'
+    all_tags: 'All tags'
+    status: 'Status'
+    description: 'Description'

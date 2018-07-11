@@ -2,58 +2,58 @@
   <%= f.error_notification %>
   <div class="columns is-centered">
     <div class="column is-half">
-    
-    
-    <% unless @shot.user_shot.blank? %>
-    <%= image_tag (@shot.user_shot_url), id: "previewImage" %>
-    <% end %>
+      
+      
+      <% unless @shot.user_shot.blank? %>
+      <%= image_tag (@shot.user_shot_url), id: "previewImage" %>
+      <% end %>
 
-    <output id="list"></output>
-    <div id="drop_zone">Drag your shot here</div>
-    <br />
+      <output id="list"></output>
+      <div id="drop_zone">Drag your shot here</div>
+      <br />
 
-    <div class="field">
-      <div class="control">
-        <%= f.input :user_shot, label: false, input_html: { class:'file-area', type: "file" }, wrapper: false, label_html: { class: "file-label" } %>
+      <div class="field">
+        <div class="control">
+          <%= f.input :user_shot, label: false, input_html: { class:'file-area', type: "file" }, wrapper: false, label_html: { class: "file-label" } %>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.input :title, label: "Title", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      <div class="field">
+        <div class="control">
+          <%= f.input :title, label: "Title", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.trix_editor :description, input_html: { class: "editor textarea"}, wrapper: false, label_html: { class: "label" } %>
+      <div class="field">
+        <div class="control">
+          <%= f.trix_editor :description, label: "Description", input_html: { class: "editor textarea"}, wrapper: false, label_html: { class: "label" } %>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.input :all_tags, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      <div class="field">
+        <div class="control">
+          <%= f.input :all_tags, label: "Tags", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+        </div>
       </div>
-    </div>
-   <div class="field ">
-      <div class="control">
-        <label class="label">Status:</label>
-        <div class="control has-icons-left">
-          <span class="select">
-            <%= f.input_field :status, collection: Shot::SHOT_STATUS, prompt: "Select a shot status " %>
-          </span>
-          <span class="icon is-small is-left">
-            <i class="fa fa-stream"></i>
-          </span>
+     <div class="field ">
+        <div class="control">
+          <label class="label">Status</label>
+          <div class="control has-icons-left">
+            <span class="select">
+              <%= f.input_field :status, collection: Shot::SHOT_STATUS, prompt: "Select a shot status " %>
+            </span>
+            <span class="icon is-small is-left">
+              <i class="fa fa-stream"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="field">
+        <div class="control" id="submit-wrap">
+          <%= f.button :submit, class:"button is-primary", id:"submit"%>
         </div>
       </div>
     </div>
-    
-    <div class="field">
-      <div class="control" id="submit-wrap">
-        <%= f.button :submit, class:"button is-primary", id:"submit"%>
-      </div>
-    </div>
   </div>
-</div>
 <% end %>

@@ -10,5 +10,6 @@ class Message < ActiveRecord::Base
 	scope :unread_message_count, -> (user) do 
 		where('read = ? ', false).where("user_id != ?",user.id ).count
 	end
+	
 end
 

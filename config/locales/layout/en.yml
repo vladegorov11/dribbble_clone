@@ -1,0 +1,28 @@
+en: 
+  filter:
+    shots: Shots
+    all_shots: 'All shots'
+    debut: 'Debut'
+    now: "Now"
+    month: "Month"
+    week: "Week"
+    year: "Year"
+    sort: 'Sort'
+    commented: "Most commented"
+    liked: "Most liked"
+    popular: "Most popular"
+    viewed: "Most viewed"
+  nav: 
+    create_designer: "Create designer profile"
+    designers: "Designers"
+    load_shot: "Load shot"
+    profile: "Profile"
+    shots: "Shots"
+    sign_out: "Sign Out"
+    notifications: 'Notifications'
+    sign_in: 'Sign In' 
+    sign_up: "Sign Up"
+  hero: 
+    welcome:
+      text: "What are you working on? <span class='has-text-grey-light'>Dribbble is where designers get inspired and hired.</span>"
+      login: Войти 
