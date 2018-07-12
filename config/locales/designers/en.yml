@@ -1,0 +1,13 @@
+en:
+  designer:
+    shots: 'Shots'
+    projects: Projects
+    description: Description
+    skills: Skills
+    comments: Comments
+    likes: Likes
+    messages: Messages
+    followers: Followers
+    follow: Follow
+    unfollow: Unfollow
+    message: Message

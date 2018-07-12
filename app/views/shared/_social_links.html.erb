@@ -1,13 +1,13 @@
-
+<%= '<hr>'.html_safe if designer.twitter_link.present? || designer.facebook_link.present? || designer.instagram_link.present?%>
 <div <%="style=font-size:#{item_size}em;"%> class="has-text-centered">
   <%= link_to designer.twitter_link do %>
     <span class="icon"><i class="fa fa-twitter"></i></span>
   <%end if designer.twitter_link.present? %>
   <%= link_to designer.facebook_link do %>
-    <span class="icon"><i class="fa fa-instagram"></i></span>
+    <span class="icon"><i class="fa fa-facebook"></i></span>
   <%end if designer.facebook_link.present? %>
   <%= link_to designer.instagram_link do %>
-    <span class="icon"><i class="fa fa-facebook"></i></span>
+    <span class="icon"><i class="fa fa-instagram"></i></span>
   <%end if designer.instagram_link.present? %>
   <div>
     

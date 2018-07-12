@@ -44,14 +44,20 @@ gem 'gravatar_image_tag'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'russian', '~> 0.6.0'
 gem 'will_paginate' , '~> 3.1.0'
+# Pundit provides a set of helpers
 gem 'pundit'
 gem 'file_validators'
+# fog is the Ruby cloud services library
 gem 'fog'
+# js  framework 
 gem 'react-rails'
+#gem nested form helper 
 gem 'nested_form'
+#gem  Create beautiful JavaScript charts with one line of Ruby
 gem 'chartkick'
+#gem The simplest way to group by
 gem 'groupdate'
-
+# gem for notifications
 gem 'notifications', '~> 0.6.0'
 # Retrieving colors from an image
 gem 'miro'

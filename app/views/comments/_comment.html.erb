@@ -16,14 +16,14 @@
       </div>
 
       <% if (user_signed_in? && (current_user.id == comment.user_id)) %>
-         <%= link_to 'Delete', [@shot, comment],
+         <%= link_to t('shots.delete'), [@shot, comment],
                     method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
       <% end %>
       
     </article>
     <div><%= comment.response %></div>
     <div class="p-b-md">
-      <%= link_to new_shot_comment_report_path(@shot, comment), title: 'report' , class: "is-pulled-right " do %>
+      <%= link_to new_shot_comment_report_path(@shot, comment), title: t('shots.report') , class: "is-pulled-right " do %>
         <p><i class="fa fa-bullhorn"></i></p>
       <% end %>
     </div>

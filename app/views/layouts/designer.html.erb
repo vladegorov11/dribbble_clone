@@ -17,19 +17,19 @@
     <%if current_user.designer? && current_user.designer.id == @designer.id%>
     <div class="profile-container  has-text-centered is-size-6 has-text-weight-semibold info-bar">
       <%= link_to designer_path(@designer) do %>
-        <span ">Shots: <%= @designer.shots.count%></span>
+        <span "><%= t('designer.shots')%>: <%= @designer.shots.count%></span>
       <%end%>
       <%= link_to followers_designer_path(@designer) do %>
-        <span >Followers: <%= @designer.follows.count%></span>
+        <span ><%= t('designer.followers')%>: <%= @designer.follows.count%></span>
       <%end%>
       <%= link_to root_path do %>
-        <span >likes:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
+        <span ><%= t('designer.likes')%>:  <%= @designer.shots.map{|shot| shot.get_likes.size}.inject(:+) %></span>
       <%end%>
       <%= link_to designer_comments_path(@designer) do %>
-        <span >Comments:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
+        <span ><%= t('designer.comments')%>:  <%= @designer.shots.map{|shot| shot.comments.size}.inject(:+) %></span>
       <%end%>
       <%= link_to conversations_path do %>
-        <span >Messages: <%= current_user.all_unread_messages %></span>
+        <span ><%= t('designer.messages')%> <%= current_user.all_unread_messages %></span>
       <%end%>
     </div>
     <%end%>
@@ -51,33 +51,33 @@
           <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "profile-avatar",gravatar: { size: 80 }); %>
           <div class="profile-attr">
             <div class="user-name"><%= @designer.name %></div>
-            <div class="designer-city"><%= @designer.city %></div> 
+            <div class="designer-city"><i class="fa fa-map-marker"></i> <%= @designer.city %></div> 
           </div>
            <div class="has-text-centered">
               <%if user_signed_in? %>
                 <% if @designer.user.id != current_user.id %>
-                <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button is-info is-small'%>
+                <%= link_to  t('designer.message'), conversations_path(sender_id: current_user.id, recipient_id: @designer.user.id), method: 'post', class:'button is-info is-small'%>
                 <% end %>
                 <% if policy(@designer).follow? %>
                   <% unless @designer.follow? current_user %>
-                    <%= link_to "Follow",follow_designer_path(@designer), class: 'button is-primary is-small'%>
+                    <%= link_to  t('designer.follow'),follow_designer_path(@designer), class: 'button is-primary is-small'%>
                   <%else%>
-                    <%= link_to "Unfollow",unfollow_designer_path(@designer), class: 'button is-primary is-small' %> 
+                    <%= link_to  t('designer.unfollow'),unfollow_designer_path(@designer), class: 'button is-primary is-small' %> 
                   <%end%>
                 <%end%>
               <%end%> 
             </div>
           <div class="columns has-text-centered is-mobile profile-count">
             <div class="column ">
-              <p class="designer-city">SHOTS</p>
+              <p class="designer-city"><%= t('designer.shots')%></p>
               <p class="designer-city"> <%= @designer.shots.count%></p>
             </div>
             <div class="column ">
-              <p class="designer-city">FOLLOWERS</p>
+              <p class="designer-city"><%= t('designer.followers')%></p>
               <p class="designer-city"><%= @designer.follows.count%></p>
             </div>
             <div class="column ">
-              <p class="designer-city">PROJECTS</p>
+              <p class="designer-city"><%= t('designer.projects')%></p>
               <p class="designer-city">4</p>
             </div>
           </div>
@@ -87,12 +87,12 @@
         </div>
           <hr>
           <div class="profile-container">
-            <h3>DESCRIPTION</h3>
+            <h3><%= t('designer.description')%></h3>
             <div class="designer-description"><%= truncate(@designer.description, length: 200) %></div>
           </div>
           <hr>
           <div class="profile-container">
-            <h3>SKILLS</h3>
+            <h3><%= t('designer.skills')%></h3>
             <div class="designer-description">
               <div class="tags">
                 <%=raw @designer.skills.map(&:name).map{|skill| link_to "<span class='tag  is-size-7'>#{skill}</span>".html_safe, skill_path(skill)}.join(' ')%>
