@@ -25,4 +25,4 @@ en:
   hero: 
     welcome:
       text: "What are you working on? <span class='has-text-grey-light'>Dribbble is where designers get inspired and hired.</span>"
-      login: Войти 
+      login: Login 
