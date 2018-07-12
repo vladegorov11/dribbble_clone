@@ -1,3 +1,4 @@
+<%= render 'shared/shot_modal' %> 
 <div class="section">
   <div class="container">
     <h1 class="title is-3"><%= @shot.title %></h1>
@@ -15,18 +16,19 @@
     </div>
     <div class="columns">
       <div class="column is-8">
-        <%= link_to new_shot_report_path(@shot), title: 'report' , class: "is-pulled-right m-r-md m-t-sm" do %>
+        <%= link_to new_shot_report_path(@shot), title: t('shots.report') , class: "is-pulled-right m-r-md m-t-sm" do %>
           <p><i class="fa fa-bullhorn"></i></p>
         <% end %>
         <div class="shot-container">
-        <div>
-          <div class="shot-full">
-             <%= image_tag @shot.user_shot_url unless @shot.user_shot.blank? %>
-          </div></div>
+          <div id="showModal" >
+            <div class="shot-full">
+               <%= image_tag @shot.user_shot_url unless @shot.user_shot.blank? %>
+            </div>
+          </div>
           <% if user_signed_in? && (current_user.id == @shot.designer.user_id) %>    
             <div class="buttons has-addons">
-              <%= link_to 'Edit', edit_shot_path(@shot), class: "button" %>
-              <%= link_to 'Delete', shot_path, class: "button", method: :delete, data: { confirm: 'Are you sure you want to delete this shot?'} %>
+              <%= link_to t('shots.edit'), edit_shot_path(@shot), class: "button" %>
+              <%= link_to t('shots.delete'), shot_path, class: "button", method: :delete, data: { confirm: t('shots.confirm')} %>
             </div>
           <% end %>
           <div class="content">
@@ -40,29 +42,29 @@
           <div class="nav panel show-shot-analytics">
             <div class="panel-block views data">
               <span class="icon"><i class="fa fa-eye"></i></span>
-              <%= pluralize(@shot.impressionist_count, 'просмотр', 'просмотрa') %>
+              <%= pluralize(@shot.impressionist_count, t('shots.view'), t('shots.views')) %>
             </div>
             <div class="panel-block comments data">
               <span class="icon"><i class="fa fa-comment"></i></span>
-              <%= pluralize(@shot.comments.count, 'Комментарий', 'Комментариев') %>
+              <%= pluralize(@shot.comments.count, t('shots.comment'), t('shots.comments')) %>
             </div>
             <div class="panel-block likes data">
               <% if user_signed_in? %>
                 <% if current_user.liked? @shot %>
                   <%= link_to unlike_shot_path(@shot), method: :put, class: "unlike_shot" do %>
                     <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
-                    <span class="vote_count"><%= pluralize(@shot.get_likes.size, 'Like') %></span>
+                    <span class="vote_count"><%= pluralize(@shot.get_likes.size, t('shots.like')) %></span>
                   <% end %>
                 <% else %>
                   <%= link_to like_shot_path(@shot), method: :put, class: "like_shot" do %>
                     <span class="icon"><i class="fa fa-heart"></i></span>
-                    <span class="vote_count"><%= pluralize(@shot.get_likes.size, 'Like') %></span>
+                    <span class="vote_count"><%= pluralize(@shot.get_likes.size, t('shots.like')) %></span>
                   <% end %>
                 <% end %>
               <% else %>
                   <%= link_to like_shot_path(@shot), method: :put, class: "like_shot" do %>
                     <span class="icon"><i class="fa fa-heart"></i></span>
-                    <span class="vote_count"><%= pluralize(@shot.get_likes.size, 'Like') %></span>
+                    <span class="vote_count"><%= pluralize(@shot.get_likes.size, t('shots.like')) %></span>
                   <% end %>
               <% end %>
               
@@ -74,7 +76,7 @@
             </div>
           </div>
           <div class="shot-wrapper color-box ">
-            <p>Dominant colors: </p>
+            <p><%= t('shots.dominant_colors') %></p>
             <ul class='color-list'>
               <% @shot.colors.each do |color| %>
                 <%= link_to hue_path(color) do %>
@@ -83,7 +85,7 @@
               <%end%>
             </ul>
           </div>
-          <h3 class="title is-5 has-text-centered m-t-md">More from 
+          <h3 class="title is-5 has-text-centered m-t-md"><%= t('shots.more_from')%>
           <%= link_to @shot.designer.name, designer_path(@shot.designer)%></h3>
           <div class="columns is-multiline m-t-md is-mobile">
             <%= render "more_from_designer"%>
@@ -113,3 +115,10 @@
     </section>
   </div>
 </div>
+
+
+
+
+   
+
+

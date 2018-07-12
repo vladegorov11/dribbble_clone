@@ -1,0 +1,9 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image is-4by3">
+      <%= image_tag @shot.user_shot_url unless @shot.user_shot.blank? %>
+    </p>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>

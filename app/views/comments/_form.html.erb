@@ -2,9 +2,10 @@
 
   <div class="field">
     <div class="control">
-      <%= f.input :response, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' } %>
+      <%= f.input :response, lable: t('shots.response') , input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' } %>
     </div>
   </div>
   
-  <%= f.button :submit, 'Leave a reply', class: 'button is-primary' %>
+  <%= f.button :submit, t('shots.comment_reply'), class: 'button is-primary' %>
 <%end%>
+

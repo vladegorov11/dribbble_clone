@@ -12,3 +12,13 @@ en:
     all_tags: 'All tags'
     status: 'Status'
     description: 'Description'
+    views: 'Views'
+    comments: 'Comments'
+    confirm: 'Are you sure you want to delete this shot?'
+    create: 'Create shot'
+    from_text1: 'What are you working on?'
+    drag_shot: 'Drag your shot here'
+    response: Response
+    comment_reply: 'Leave a reply'
+    comment_confirm: 'Are you sure?'
+    from_text_edit:

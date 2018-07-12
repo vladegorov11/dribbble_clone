@@ -106,4 +106,12 @@ document.addEventListener("turbolinks:load", function() {
     $('#submit-wrap').append("<a class='button is-danger is-loading'>Loading</a>");
   });
 
+  $("#showModal").click(function() {
+  $(".modal").addClass("is-active");  
+  });
+
+  $(".modal-close").click(function() {
+     $(".modal").removeClass("is-active");
+  });
+
 });
