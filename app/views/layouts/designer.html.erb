@@ -87,12 +87,12 @@
         </div>
           <hr>
           <div class="profile-container">
-            <h3><%= t('designer.description')%></h3>
+            <h3 class="m-b-sm"><%= t('designer.description')%>:</h3>
             <div class="designer-description"><%= truncate(@designer.description, length: 200) %></div>
           </div>
           <hr>
           <div class="profile-container">
-            <h3><%= t('designer.skills')%></h3>
+            <h3 class="m-b-sm"><%= t('designer.skills')%>:</h3>
             <div class="designer-description">
               <div class="tags">
                 <%=raw @designer.skills.map(&:name).map{|skill| link_to "<span class='tag  is-size-7'>#{skill}</span>".html_safe, skill_path(skill)}.join(' ')%>

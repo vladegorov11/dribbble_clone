@@ -79,6 +79,11 @@ class ShotsController < ApplicationController
     end
   end
 
+  def search
+    @designers = Designer.all
+    @shots = Shot.search_everywhere(params[:query]).current_page(params[:page]) 
+  end
+  
   private
 
     def check_designer_shot_count
@@ -89,7 +94,7 @@ class ShotsController < ApplicationController
     end
 
     def set_shot
-      @shot = Shot.find(params[:id])
+      @shot = Shot.find(params[:id]) 
     end
 
     def shot_params

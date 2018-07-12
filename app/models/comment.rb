@@ -11,8 +11,6 @@ class Comment < ApplicationRecord
 
   validates :response, presence: true,  length: { in: 2..1000 }
 
-  
-
   def create_notifications
     Notification.create(
       notify_type: 'comment',
@@ -21,11 +19,5 @@ class Comment < ApplicationRecord
       target: self,
       second_target: self.shot)
   end
-
-
-    # t.string "name"
-    # t.text "response"
-    # t.integer "shot_id"
-    # t.integer "user_id"
 
 end

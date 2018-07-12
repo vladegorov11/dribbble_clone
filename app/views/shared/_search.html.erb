@@ -1,0 +1,12 @@
+<div class="navbar-item ">
+<%= form_with  url: search_path, method: "Get",html: { id: 'form-search' } , local: true  do |f| %>
+	   <div class="field">
+		  <p class="control has-icons-left has-icons-right">
+		    <%= f.text_field :query, class: 'input is-rounded', placeholder: t('nav.search') %>
+		    <span class="icon is-small is-right">
+		      <%= f.submit '', class: "search-btn" %>
+		    </span>
+		  </p>
+		</div>
+	<%end%>
+</div>

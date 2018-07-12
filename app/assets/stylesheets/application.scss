@@ -38,6 +38,9 @@ hr {
 a {
   text-decoration: none;
 }
+ol {
+  list-style: none;
+}
 .bounce {
   display: none;
   transition:  ease-out 0.3s;
@@ -648,3 +651,48 @@ filter: blur(2px);
     max-width: 100%;
     width: 100%;
 }
+
+.search-btn {
+  position: relative;
+  top: 0px;
+  right: 5px;
+  background: url(https://api.icons8.com/download/e01fdf06b5a947b5517bf8f2f06254a0167c5f35/Android/PNG/512/Very_Basic/search-512.png) no-repeat;
+  background-size: contain;
+  width: 35px;
+  height: 20px;
+  border: 0 ;
+}
+
+.search-extra-list {
+  text-align: center;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.search-extra-list li  {
+  display: inline-block;
+  margin: 0 10px 10px 10px;
+  padding: 0 10px;
+  line-height: 20px;
+}
+
+.search-extra-list li  a {
+    max-width: 160px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 30px;
+    font-weight: 500;
+    text-align: left;
+    color: #444;
+}
+
+
+.search-extra-list li  a img{
+    position: relative;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    margin: 0 4px 0 0;
+  }

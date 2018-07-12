@@ -1,7 +1,9 @@
 require 'miro'
 class Shot < ApplicationRecord
-
+  include PgSearch
   include Filterable
+  
+  
   SHOT_STATUS = %w[
                   publish 
                   ban 
@@ -46,6 +48,8 @@ class Shot < ApplicationRecord
   scope :year , -> {where(created_at: 1.year.ago..DateTime.now)}
 
   scope :week, -> {where(created_at: 1.week.ago..DateTime.now)}
+
+  pg_search_scope :search_everywhere, against: [:title, :description]
   
   def all_tags
     self.tags.map(&:name).join(', ')

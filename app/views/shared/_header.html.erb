@@ -24,10 +24,12 @@
     <div class="navbar-start">
       <%= link_to t('nav.shots'), root_path , class:"navbar-item" %>
       <%= link_to t('nav.designers'), designers_path , class:"navbar-item" %>
+      <%= render 'shared/search'%>
     </div>
 
     <div class="navbar-end">
         <div class="navbar-brand">
+
           <%= link_to 'Рус', {locale: :ru}, class:"navbar-item #{'is-active' if I18n.locale == :ru} " %>
           <%= link_to 'Eng', {locale: :en}, class:"navbar-item #{'is-active' if I18n.locale == :en} " %>
         <% if user_signed_in? %>

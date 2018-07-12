@@ -11,9 +11,16 @@ class CommentsController < ApplicationController
   def create
     @comment = @shot.comments.create(comment_params)
     @comment.user_id = current_user.id if current_user 
-    @comment.save!
-
-    redirect_to shot_path(@shot)
+    respond_to do |format|
+      if @comment.save
+        format.html {  redirect_to shot_path(@shot), notice: 'Shot was successfully created.' }
+        format.json { render :show, status: :created, location: @shot }
+      else
+        format.html { redirect_to shot_path(@shot), notice: 'Shot not successfully created.' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+   
   end
 
   def destroy

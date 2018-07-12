@@ -22,6 +22,7 @@ ru:
     notifications: Уведомления
     sign_in: Войти 
     sign_up: Регистрация
+    search: Поиск
   hero: 
     welcome:
       text: "Над чем ты работаешь? <span class = 'has-text-gray-light'> Dribbble - это то, где дизайнеры вдохновляются и нанимаются. </ span>"

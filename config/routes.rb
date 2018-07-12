@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         get 'unfollow', to: "designers#unfollow"
       end
     end
+    get 'search', to: 'shots#search'
     root 'shots#index'
     resources :shots  do
       resources :comments, except: [:index] do
