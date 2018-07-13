@@ -453,6 +453,12 @@ a:hover {
     width: 100%; 
     text-align: center; 
   }
+  .navbar-item .icon i {
+        color: #000;
+     }
+     .navbar-item .icon i:hover  {
+        color: #fff;
+     }
 }
 
 .tag-cloud-container {
@@ -625,6 +631,12 @@ filter: blur(2px);
       overflow: hidden; 
     }
 
+    .navbar-item .icon i {
+        color: #000;
+     }
+     .navbar-item .icon i:hover  {
+        color: #fff;
+     }
   }
 
 .trix-content {
@@ -696,3 +708,4 @@ filter: blur(2px);
     height: 30px;
     margin: 0 4px 0 0;
   }
+
