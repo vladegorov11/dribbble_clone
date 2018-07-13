@@ -1,4 +1,7 @@
 <div class="box ">
+	<%= link_to notification_path( notification), class: 'btn btn-sm btn-secondary is-pulled-right m-l-sm', method: 'delete', data: { confirm: 'Are you sure delete notification ?'} do%>
+	<i class="fa fa-times-circle "></i>
+	<%end%>
 	<span class="is-pulled-right"><%= l notification.created_at, format: :short %></span>
 	<span class="image is-30x30 user-thumb">
       <%= gravatar_image_tag(notification.actor.email.gsub('spam', 'mdeering'), alt: notification.actor.name, gravatar: { size: 30 }) %>
@@ -8,5 +11,4 @@
 	<p> <%=  truncate(notification.target.response, length: 50) %></p>
 	
 	<%#= image_tag notification.second_target.user_shot_url unless notification.second_target.user_shot.blank? %>
-	
 </div>

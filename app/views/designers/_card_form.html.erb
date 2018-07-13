@@ -1,31 +1,29 @@
 
 <div class="colunms">
-	
-			<%= f.fields_for :cards do |card_form| %>
-			  <div class="column is-8 is-offset-2">
-			  <div class="box">
-			    <%= card_form.link_to_remove data: { confirm: 'Are you sure you want to delete this shot?'} do  %>
-			    <i class="fa fa-times-circle "></i>
-			    <%end%>
-				  <div class="field">
-				    <div class="control">
-				      <%= card_form.text_field :number, placeholder: 'Card Number', class: "input"%>
-				    </div>
-				  </div>
+	<%= f.fields_for :cards do |card_form| %>
+	  <div class="column is-8 is-offset-2">
+	  <div class="box">
+	    <%= card_form.link_to_remove data: { confirm: 'Are you sure you want to delete this shot?'} do  %>
+	    <i class="fa fa-times-circle "></i>
+	    <%end%>
+		  <div class="field">
+		    <div class="control">
+		      <%= card_form.text_field :number, placeholder: 'Card Number', class: "input"%>
+		    </div>
+		  </div>
 
-				  <div class='card-date'>
-				      <%= card_form.text_field :month , placeholder: 'MM',  class: "input"%>
-				  </div>
-				  /
-				  <div  class='card-date'>
-				 	 		<%= card_form.text_field :year , placeholder: 'YYYY', class: "input"%>
-				  </div>
-				   <div  class='card-date is-pulled-right'>
-				  		<%= card_form.text_field :cvv , placeholder: 'CVV', class: "input"%>
-				  </div>
-				</div>
-			  </div>
-			<% end %>
-		
+		  <div class='card-date'>
+		      <%= card_form.text_field :month , placeholder: 'MM',  class: "input"%>
+		  </div>
+		  /
+		  <div  class='card-date'>
+		 	 		<%= card_form.text_field :year , placeholder: 'YYYY', class: "input"%>
+		  </div>
+		   <div  class='card-date is-pulled-right'>
+		  		<%= card_form.text_field :cvv , placeholder: 'CVV', class: "input"%>
+		  </div>
+		</div>
+	  </div>
+	<% end %>
 </div>
 <p><%= f.link_to_add "Add a card", :cards , class: "button is-info is-outlined "%></p>

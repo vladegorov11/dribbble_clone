@@ -32,7 +32,7 @@
 
           <%= link_to 'Рус', {locale: :ru}, class:"navbar-item #{'is-active' if I18n.locale == :ru} " %>
           <%= link_to 'Eng', {locale: :en}, class:"navbar-item #{'is-active' if I18n.locale == :en} " %>
-        <% if user_signed_in? %>
+            <% if user_signed_in? %>
               <% unless current_user.designer.blank?%>
                 <% if  current_user.designer.persisted?%>
                 
