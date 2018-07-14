@@ -78,11 +78,6 @@ class ShotsController < ApplicationController
       format.js {render layout:false}
     end
   end
-
-  def search
-    @designers = Designer.all
-    @shots = Shot.search_everywhere(params[:query]).current_page(params[:page]) 
-  end
   
   private
 

@@ -1,17 +1,10 @@
 <section class="container sort-wrapper is-fullhd ">
 	<ol class="search-extra-list">
-		<%@designers.each do |designer| %> 
-			<li ><%= link_to root_path do %>
+		<%designers.each do |designer| %> 
+			<li ><%= link_to designer_path(designer) do %>
 				<%= gravatar_image_tag(designer.user.email.gsub('spam', 'mdeering'), alt: designer.user.name, class:'rounded', gravatar: { size: 120 }) %>
 				<%=designer.name%> 
 			<%end%></li>
 		<%end%>
 	</ol>
-
-</section>
-<section class="section shots-wrap" id="pagination-wrapper" >
-  		<div class="columns  is-multiline " id="shots">
-  			<%= render  @shots%>
-  		</div>
-  		<%= will_paginate  @shots %>
 </section>

@@ -14,8 +14,8 @@ Rails.application.routes.draw do
       end
     end
 
-    get 'search', to: 'shots#search'
-    root 'shots#index' , locale: I18n.locale
+    #get 'search', to: 'shots#search'
+    root 'shots#index' #, locale: I18n.locale
     resources :shots  do
       resources :comments, except: [:index] do
         resources :reports, only: [:new, :create]
@@ -36,9 +36,9 @@ Rails.application.routes.draw do
     resources :conversations do
       resources :messages
     end
+    
+    draw :admin
+    draw :search
 
-    namespace :admin do
-      get '', to: 'dashboard#index', as: '/'
-    end
   end
 end
