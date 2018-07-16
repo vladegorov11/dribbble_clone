@@ -1,10 +1,11 @@
-<section class="container sort-wrapper is-fullhd ">
-	<ol class="search-extra-list">
-		<%designers.each do |designer| %> 
-			<li ><%= link_to designer_path(designer) do %>
-				<%= gravatar_image_tag(designer.user.email.gsub('spam', 'mdeering'), alt: designer.user.name, class:'rounded', gravatar: { size: 120 }) %>
-				<%=designer.name%> 
-			<%end%></li>
+<%designers.each do |designer| %> 
+	<li >
+		<%= link_to designer_path(designer) do %>
+			<%= gravatar_image_tag(designer.user.email.gsub('spam', 'mdeering'), alt: designer.user.name, class:'rounded', gravatar: { size: 120 }) %>
+			<%=designer.name%> 
 		<%end%>
-	</ol>
-</section>
+	</li>
+<%end%>
+<li><%= link_to  search_designers_path(query: request.params[:query]) do %>
+	View All <i class="fa fa-long-arrow-right"></i>    
+<%end if designers.count >= 1 %></li>

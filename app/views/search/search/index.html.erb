@@ -1,4 +1,13 @@
+<section class="container sort-wrapper is-fullhd ">
+	<ol class="search-extra-list">
+		<%= input_designers(@search[:Designer], 5) %>
+		<li><%= link_to  root_path do %>
+			Designers with skill '<%= request.params[:query]%> '  
+		<%end if  @search[:Skill].present? %></li>
+		<li><%= link_to  root_path  do %>
+			Shots tagged  '<%= request.params[:query]%>'
+		<%end if  @search[:Tag].present?  %></li>
+	</ol>
+</section>
+<%= input_shots(@search[:Shot], 12) %>
 
-<%= input_designers(@search[:Designer], 12) %>
-
-<%= input_shots(@search[:Shot], 5) %>

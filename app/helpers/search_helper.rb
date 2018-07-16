@@ -7,17 +7,16 @@ module SearchHelper
   		</div>
 		</section> ".html_safe 
 		else 
-			'No match record'
+			raw render  'shared/empty_record'
 		end  
 	end
 
 	def input_designers (designers, limit)
 		if designers.present?
 			raw render partial: 'designers', locals: {designers: @search[:Designer].limit(limit)}
-		else 
-			'No match record'
 		end
 	end
+
 end
 
 
