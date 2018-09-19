@@ -10,5 +10,5 @@ class ConversationPolicy
     @model.sender_id == @user.id or  @model.recipient_id == @user.id
   end
 
-end
 
+end

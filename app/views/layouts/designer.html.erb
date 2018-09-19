@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render 'shared/header'%> 
+    <%= render 'shared/header'%>
     <%= render 'shared/hero/login_hero'%>
     <%= render 'shared/sort'%>
   <% if user_signed_in? %>
@@ -51,7 +52,7 @@
           <%= gravatar_image_tag(@designer.user.email.gsub('spam', 'mdeering'), alt: @designer.user.name, class: "profile-avatar",gravatar: { size: 80 }); %>
           <div class="profile-attr">
             <div class="user-name"><%= @designer.name %></div>
-            <div class="designer-city"><i class="fa fa-map-marker"></i> <%= @designer.city %></div> 
+            <div class="designer-city"><i class="fa fa-map-marker"></i> <%= @designer.city %></div>
           </div>
            <div class="has-text-centered">
               <%if user_signed_in? %>
@@ -62,10 +63,10 @@
                   <% unless @designer.follow? current_user %>
                     <%= link_to  t('designer.follow'),follow_designer_path(@designer), class: 'button is-primary is-small'%>
                   <%else%>
-                    <%= link_to  t('designer.unfollow'),unfollow_designer_path(@designer), class: 'button is-primary is-small' %> 
+                    <%= link_to  t('designer.unfollow'),unfollow_designer_path(@designer), class: 'button is-primary is-small' %>
                   <%end%>
                 <%end%>
-              <%end%> 
+              <%end%>
             </div>
           <div class="columns has-text-centered is-mobile profile-count">
             <div class="column ">
@@ -99,12 +100,12 @@
               </div>
             </div>
           </div>
-          
+
       </div>
       <div class="column is-9">
           <%= yield %>
       </div>
-      
+
     </div>
     </div>
   </section>
