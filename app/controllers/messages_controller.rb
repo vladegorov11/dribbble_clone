@@ -19,7 +19,9 @@ def index
   read_update @messages
   @message = @conversation.messages.new
 end
-
+def show
+  @designer =  current_user.designer if current_user.designer.present?
+end
 def new
  @message = @conversation.messages.new
 end

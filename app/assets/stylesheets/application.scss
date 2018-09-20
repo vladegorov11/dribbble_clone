@@ -33,7 +33,7 @@ html, body {
   overflow-scrolling:touch;
 }
 hr {
-  margin: 10px 0; 
+  margin: 10px 0;
 }
 a {
   text-decoration: none;
@@ -158,7 +158,7 @@ ol {
 }
 .error_notification {
   color: $danger ;
-  text-align: center; 
+  text-align: center;
 }
 .tag {
   margin: 0 8px 0 0;
@@ -244,7 +244,7 @@ ol {
 // }
 
   .shot-data {
-    
+
     cursor: pointer; }
     .shot-title {
       font-weight: bold;
@@ -257,11 +257,11 @@ ol {
       font-size: .8rem;
       padding-top: .5rem;
     }
-  
+
     .holder{
     position:relative;
-    background-size: cover; 
-    
+    background-size: cover;
+
       }
 .shot-wrapper {
   border-radius: 10px;
@@ -283,7 +283,7 @@ ol {
 .holder:hover .block{
   display:block;
 }
-.image-shot  {  
+.image-shot  {
 height: 170px;
 width: 100%;
 }
@@ -399,7 +399,7 @@ width: 100%;
 .shot-full {
   text-align: center;
   // position: relative;
-  // overflow: hidden; 
+  // overflow: hidden;
 }
 // .shot-full img {
 //   transition: all .3s ease;
@@ -450,8 +450,8 @@ a:hover {
 @media only screen and (max-width: 800px) {
   #profile-container {
     position: static;
-    width: 100%; 
-    text-align: center; 
+    width: 100%;
+    text-align: center;
   }
   .navbar-item .icon i {
         color: #000;
@@ -517,7 +517,7 @@ a:hover {
 
 }
 .exp {
-  display: block; /* смещает только блоки */ 
+  display: block; /* смещает только блоки */
   margin-left: auto;
 }
 
@@ -554,37 +554,37 @@ filter: blur(2px);
 }
 
 
-.pagination { 
-  padding: 3px; 
-  margin: 3px; 
-} 
-.pagination a { 
-  padding: 2px 5px 2px 5px; 
-  margin: 2px; 
-  border: 1px solid #4a4a4a; 
+.pagination {
+  padding: 3px;
+  margin: 3px;
+}
+.pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #4a4a4a;
   border-radius: 3px;
-  text-decoration: none; 
-  color: #4a4a4a; 
-} 
-.pagination a:hover, 
-.pagination a:active { 
-  border: 1px solid #4a4a4a; 
+  text-decoration: none;
+  color: #4a4a4a;
+}
+.pagination a:hover,
+.pagination a:active {
+  border: 1px solid #4a4a4a;
   border-radius: 3px;
-  color: #4a4a4a; 
-} 
-.pagination span.current { 
-  padding: 2px 5px 2px 5px; 
-  margin: 2px; 
-  border: 1px solid #4a4a4a; 
+  color: #4a4a4a;
+}
+.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #4a4a4a;
   border-radius: 3px;
-  font-weight: bold; 
-  background-color: #4a4a4a; 
-  color: #4a4a4a; } 
-  
-.pagination span.disabled { 
-  padding: 2px 5px 2px 5px; 
-  margin: 2px; 
-  color: #4a4a4a; 
+  font-weight: bold;
+  background-color: #4a4a4a;
+  color: #4a4a4a; }
+
+.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  color: #4a4a4a;
 }
 
   .card-date {
@@ -600,8 +600,8 @@ filter: blur(2px);
     margin-top: 10px;
   }
   .color-list-item {
-    width: 12%; 
-    height: 15px; 
+    width: 12%;
+    height: 15px;
     float: left;
     cursor: pointer;
     text-indent: -9999px;
@@ -610,7 +610,7 @@ filter: blur(2px);
 
   .color-list-item:hover {
     width: 14%;
-    height: 17px; 
+    height: 17px;
     z-index: 99;
   }
 
@@ -622,13 +622,13 @@ filter: blur(2px);
     .file-area {
       display: block;
     }
-    .image-shot  {  
+    .image-shot  {
       height: 220px;
     }
     .shot-full {
       text-align: center;
       position: inherit;
-      overflow: hidden; 
+      overflow: hidden;
     }
 
     .navbar-item .icon i {
@@ -712,3 +712,58 @@ filter: blur(2px);
     margin: 0 4px 0 0;
   }
 
+
+
+
+
+
+
+
+  .container-m {
+      border: 2px solid #dedede;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+  }
+
+  /* Darker chat container */
+  .darker {
+      border-color: #ccc;
+      background-color: #ddd;
+  }
+
+  /* Clear floats */
+  .container-m::after {
+      content: "";
+      clear: both;
+      display: table;
+  }
+
+  /* Style images */
+  .container-m img {
+      float: left;
+      max-width: 60px;
+      width: 100%;
+      margin-right: 20px;
+      border-radius: 50%;
+  }
+
+  /* Style the right image */
+  .container-m img.right {
+      float: right;
+      margin-left: 20px;
+      margin-right:0;
+  }
+
+  /* Style time text */
+  .time-right {
+      float: right;
+      color: #aaa;
+  }
+
+  /* Style time text */
+  .time-left {
+      float: left;
+      color: #999;
+  }

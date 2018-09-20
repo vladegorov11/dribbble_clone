@@ -1,6 +1,3 @@
-<% if @over_ten %>
-   <%#= link_to 'Show Previous', '?m=all' %>
-<% end %>
 <div class="columns is-multiline">
   <div class=" column is-8 is-offset-2 chat-container">
         <%= link_to conversations_path, class: "is-size-5" do %>
@@ -11,14 +8,10 @@
         <% @messages.each do |message| %>
           <% if message.body %>
             <% user = User.find(message.user_id) %>
-            <div class="">
-              <div class="message-wrapper  is-size-7 <%= 'exp' if message.user_id == current_user.id%>">
-                <div class='messages-header '>
-                  <%= gravatar_image_tag(message.user.email.gsub('spam', 'mdeering'), class: "rounded ", gravatar: { size: 35 }); %>
-                  <span class="user_name"><%= user.name %></span>
-                </div>
-                  <%= message.body %>
-              </div>
+            <div class="container-m <%= 'darker' if message.user_id == current_user.id%>">
+              <%= gravatar_image_tag(message.user.email.gsub('spam', 'mdeering'), class:  message.user_id == current_user.id ? "rounded right" : "rounded" , gravatar: { size: 70 }); %>
+              <p><%= message.body %></p>
+              <span class="<%=message.user_id == current_user.id ? "time-left" : "time-right"%>"><%=message.created_at%></span>
             </div>
           <% end %>
         <% end %>
