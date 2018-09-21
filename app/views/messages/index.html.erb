@@ -11,7 +11,7 @@
             <div class="container-m <%= 'darker' if message.user_id == current_user.id%>">
               <%= gravatar_image_tag(message.user.email.gsub('spam', 'mdeering'), class:  message.user_id == current_user.id ? "rounded right" : "rounded" , gravatar: { size: 70 }); %>
               <p><%= message.body %></p>
-              <span class="<%=message.user_id == current_user.id ? "time-left" : "time-right"%>"><%=message.created_at%></span>
+              <span class="message-date <%=message.user_id == current_user.id ? "time-left" : "time-right"%>"><%=verbose_date(message.created_at)%></span>
             </div>
           <% end %>
         <% end %>
